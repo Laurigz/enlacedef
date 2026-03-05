@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+
+<html lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Enlace Portfolio Page</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1f68f9",
+                        "background-light": "#f5f6f8",
+                        "background-dark": "#0f1623",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display">
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+<!-- Header -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-primary/10 dark:border-primary/20 px-10 py-4 bg-background-light dark:bg-background-dark sticky top-0 z-50">
+<div class="flex items-center gap-4 text-slate-900 dark:text-slate-100">
+<div class="size-6 text-primary">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_6_319)">
+<path d="M8.57829 8.57829C5.52816 11.6284 3.451 15.5145 2.60947 19.7452C1.76794 23.9758 2.19984 28.361 3.85056 32.3462C5.50128 36.3314 8.29667 39.7376 11.8832 42.134C15.4698 44.5305 19.6865 45.8096 24 45.8096C28.3135 45.8096 32.5302 44.5305 36.1168 42.134C39.7033 39.7375 42.4987 36.3314 44.1494 32.3462C45.8002 28.361 46.2321 23.9758 45.3905 19.7452C44.549 15.5145 42.4718 11.6284 39.4217 8.57829L24 24L8.57829 8.57829Z" fill="currentColor"></path>
+</g>
+<defs>
+<clippath id="clip0_6_319"><rect fill="white" height="48" width="48"></rect></clippath>
+</defs>
+</svg>
+</div>
+<h2 class="text-xl font-bold leading-tight tracking-[-0.015em]">Enlace</h2>
+</div>
+<nav class="flex flex-1 justify-end gap-8 items-center">
+<div class="flex items-center gap-9">
+<a class="text-primary font-bold text-sm leading-normal border-b-2 border-primary pb-1" href="#">Portafolio</a>
+<a class="text-slate-600 hover:text-primary dark:text-slate-400 dark:hover:text-primary transition-colors text-sm font-medium leading-normal" href="#">Servicios</a>
+<a class="text-slate-600 hover:text-primary dark:text-slate-400 dark:hover:text-primary transition-colors text-sm font-medium leading-normal" href="#">Nosotros</a>
+<a class="text-slate-600 hover:text-primary dark:text-slate-400 dark:hover:text-primary transition-colors text-sm font-medium leading-normal" href="#">Contacto</a>
+</div>
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-5 bg-primary hover:bg-primary/90 transition-colors text-white text-sm font-bold leading-normal tracking-[0.015em]">
+<span class="truncate">Empezar Proyecto</span>
+</button>
+</nav>
+</header>
+<!-- Main Content -->
+<main class="flex-1 flex flex-col items-center pb-20">
+<div class="w-full max-w-6xl px-6 md:px-10">
+<!-- Title Section -->
+<div class="py-16 md:py-24 flex flex-col items-center text-center gap-6">
+<h1 class="text-5xl md:text-6xl font-black leading-tight tracking-[-0.033em] text-slate-900 dark:text-white max-w-3xl">
+                        Proyectos que hablan por sí solos.
+                    </h1>
+<h2 class="text-lg md:text-xl font-normal leading-relaxed text-slate-600 dark:text-slate-400 max-w-2xl">
+                        Diseño, tecnología y estrategia que generan resultados medibles para marcas ambiciosas.
+                    </h2>
+</div>
+<!-- Filter Bar -->
+<div class="mb-12 border-b border-primary/20 dark:border-primary/10 overflow-x-auto">
+<div class="flex gap-8 min-w-max px-2">
+<a class="flex flex-col items-center justify-center border-b-2 border-primary text-primary pb-3 pt-2 px-4 transition-colors" href="#">
+<p class="text-sm font-bold leading-normal tracking-[0.015em]">All</p>
+</a>
+<a class="flex flex-col items-center justify-center border-b-2 border-transparent text-slate-500 hover:text-primary hover:border-primary/50 dark:text-slate-400 dark:hover:text-primary pb-3 pt-2 px-4 transition-colors" href="#">
+<p class="text-sm font-bold leading-normal tracking-[0.015em]">Branding</p>
+</a>
+<a class="flex flex-col items-center justify-center border-b-2 border-transparent text-slate-500 hover:text-primary hover:border-primary/50 dark:text-slate-400 dark:hover:text-primary pb-3 pt-2 px-4 transition-colors" href="#">
+<p class="text-sm font-bold leading-normal tracking-[0.015em]">Web</p>
+</a>
+<a class="flex flex-col items-center justify-center border-b-2 border-transparent text-slate-500 hover:text-primary hover:border-primary/50 dark:text-slate-400 dark:hover:text-primary pb-3 pt-2 px-4 transition-colors" href="#">
+<p class="text-sm font-bold leading-normal tracking-[0.015em]">AI</p>
+</a>
+<a class="flex flex-col items-center justify-center border-b-2 border-transparent text-slate-500 hover:text-primary hover:border-primary/50 dark:text-slate-400 dark:hover:text-primary pb-3 pt-2 px-4 transition-colors" href="#">
+<p class="text-sm font-bold leading-normal tracking-[0.015em]">SEO</p>
+</a>
+</div>
+</div>
+<!-- Project Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+<!-- Project 1 -->
+<div class="group relative overflow-hidden rounded-xl bg-slate-100 dark:bg-slate-800 cursor-pointer">
+<div class="aspect-[4/3] bg-cover bg-center transition-transform duration-500 group-hover:scale-105" data-alt="Laptop with analytics dashboard graph" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBQ1-pKQsVjME3Jihoy03KSP66eUCvn3-LNFX5R952gJYDLrtehytQAn9xYpVUF_hj_bpxZIjsihLH3MQPHk2F5PJHdUozpdLqkTJvncr9m5SVdBhebBX6kyM-Xx0WzGkdPEDAvo-vrGMTEa5bvDU78jaUmMg5PdgQWRjwWexlvYndbggnLWcQnsZBRq0wq0ULCYUK9TTumgCvl8slLK2eBraS2iMf0BlV-0yhaaKgzwA_BZURI2-opCxb15eiwXnhD-ogdXwFMo0SC");'>
+</div>
+<div class="absolute inset-0 bg-primary/0 group-hover:bg-primary/90 transition-all duration-300 flex flex-col justify-end p-8">
+<div class="opacity-100 group-hover:opacity-0 transition-opacity duration-300 absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-slate-900/80 to-transparent">
+<p class="text-primary font-bold text-sm mb-1">FinTech Startup</p>
+<h3 class="text-white text-2xl font-bold leading-tight mb-2">Plataforma de Inversión Global</h3>
+<p class="text-white/80 text-sm font-medium">Crecimiento de Leads +200%</p>
+</div>
+<div class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-4 group-hover:translate-y-0 h-full flex flex-col justify-center items-center text-center">
+<p class="text-white/90 text-sm font-bold mb-2 uppercase tracking-wider">Web &amp; UX/UI</p>
+<h3 class="text-white text-3xl font-black mb-6">Plataforma de Inversión</h3>
+<span class="inline-flex items-center gap-2 text-white font-bold hover:underline">
+                                    Ver caso de estudio <span class="material-symbols-outlined">arrow_forward</span>
+</span>
+</div>
+</div>
+</div>
+<!-- Project 2 -->
+<div class="group relative overflow-hidden rounded-xl bg-slate-100 dark:bg-slate-800 cursor-pointer mt-0 md:mt-12">
+<div class="aspect-[4/3] bg-cover bg-center transition-transform duration-500 group-hover:scale-105" data-alt="Team working on branding materials" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCL0CU_pS_y8auIPjrbnDJ_QJOxwNj7vODHLr1jKf7s4JQDiEJqOdVc9ssC_i7FzS-HMUJy57WNAHqlZkYTpmuknIO752dxsTL2tBKJ-T6lfxgweq1KzJ7oe4xWc1ipipdqx8HhO66SfOfShrpYoSGFDUCQQHxXp6jHFLoZJb5O2k3d3C80gemhwHdIPlCZsZBXCaWZ3xMXHsvT1RsYTOi1k_VPbijtNQ0NT9Hl4a_69w5ByPhKYrzl0gKQsc17zzZjjAPNYiw3elbj");'>
+</div>
+<div class="absolute inset-0 bg-primary/0 group-hover:bg-primary/90 transition-all duration-300 flex flex-col justify-end p-8">
+<div class="opacity-100 group-hover:opacity-0 transition-opacity duration-300 absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-slate-900/80 to-transparent">
+<p class="text-primary font-bold text-sm mb-1">EcoRetail</p>
+<h3 class="text-white text-2xl font-bold leading-tight mb-2">Rebranding Sostenible</h3>
+<p class="text-white/80 text-sm font-medium">Incremento en ventas +150%</p>
+</div>
+<div class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-4 group-hover:translate-y-0 h-full flex flex-col justify-center items-center text-center">
+<p class="text-white/90 text-sm font-bold mb-2 uppercase tracking-wider">Branding &amp; AI</p>
+<h3 class="text-white text-3xl font-black mb-6">Rebranding Sostenible</h3>
+<span class="inline-flex items-center gap-2 text-white font-bold hover:underline">
+                                    Ver caso de estudio <span class="material-symbols-outlined">arrow_forward</span>
+</span>
+</div>
+</div>
+</div>
+<!-- Project 3 -->
+<div class="group relative overflow-hidden rounded-xl bg-slate-100 dark:bg-slate-800 cursor-pointer">
+<div class="aspect-[4/3] bg-cover bg-center transition-transform duration-500 group-hover:scale-105" data-alt="Data analytics dashboard on screen" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuArLSDCv-sYJ-wTh7pzRZiErdVPcNiDkByk1GheiK_BYNfCjk6B1ap8Gn9UCpmh2Jt--b1tejhbRKK07v8YxdUyvSo0wNZcFoY9hzJB-1Y67xHj03cKCdUTFcMywFkA9eeqKAVrJ4kT0DPn_2KJmkiWfx-zEN1Szwz9e6PE9M9xLec5J_uzACs8R2WdZwPsQIH5UtiIzJMu1K5QdBqxL67EUIC-Xth3hhuesfppWWGUSYHZj6V9Q_wrm_p4xJtvKWvQsy2y0ceMNRtc");'>
+</div>
+<div class="absolute inset-0 bg-primary/0 group-hover:bg-primary/90 transition-all duration-300 flex flex-col justify-end p-8">
+<div class="opacity-100 group-hover:opacity-0 transition-opacity duration-300 absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-slate-900/80 to-transparent">
+<p class="text-primary font-bold text-sm mb-1">HealthTech SAAS</p>
+<h3 class="text-white text-2xl font-bold leading-tight mb-2">Integración AI Médica</h3>
+<p class="text-white/80 text-sm font-medium">Reducción de tiempos 40%</p>
+</div>
+<div class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-4 group-hover:translate-y-0 h-full flex flex-col justify-center items-center text-center">
+<p class="text-white/90 text-sm font-bold mb-2 uppercase tracking-wider">AI &amp; Web</p>
+<h3 class="text-white text-3xl font-black mb-6">Integración AI Médica</h3>
+<span class="inline-flex items-center gap-2 text-white font-bold hover:underline">
+                                    Ver caso de estudio <span class="material-symbols-outlined">arrow_forward</span>
+</span>
+</div>
+</div>
+</div>
+<!-- Project 4 -->
+<div class="group relative overflow-hidden rounded-xl bg-slate-100 dark:bg-slate-800 cursor-pointer mt-0 md:mt-12">
+<div class="aspect-[4/3] bg-cover bg-center transition-transform duration-500 group-hover:scale-105" data-alt="Abstract digital architecture rendering" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAxRsbqdUdoFCwWEegRtCGHyHiF1ACGhDowYWddlqjFeZe0kUzA1hcX7TuJuz7MXiN0vVhDg0l5p3R48HF_Ajj2Ir7i9mdx5gKjZ_2ctDtXeE-XZ5qXknrIZv_UpEFQJaJaTUiFSRZp1qI9RpDtDhOxeBJnJuyIEUaJv-wLVq-x67IZzMRUlIAakk04ilvRpiY7KDiN_-AlAkgQRDe9FDVSZMHhR_XehCIz0H5SFyz9U81xFSMPvAh9j88KMRtDHIi5u-4RuFUq-EVk");'>
+</div>
+<div class="absolute inset-0 bg-primary/0 group-hover:bg-primary/90 transition-all duration-300 flex flex-col justify-end p-8">
+<div class="opacity-100 group-hover:opacity-0 transition-opacity duration-300 absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-slate-900/80 to-transparent">
+<p class="text-primary font-bold text-sm mb-1">ArqDesign Studio</p>
+<h3 class="text-white text-2xl font-bold leading-tight mb-2">Portfolio Interactivo 3D</h3>
+<p class="text-white/80 text-sm font-medium">Tráfico orgánico +300%</p>
+</div>
+<div class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-4 group-hover:translate-y-0 h-full flex flex-col justify-center items-center text-center">
+<p class="text-white/90 text-sm font-bold mb-2 uppercase tracking-wider">Web &amp; SEO</p>
+<h3 class="text-white text-3xl font-black mb-6">Portfolio Interactivo</h3>
+<span class="inline-flex items-center gap-2 text-white font-bold hover:underline">
+                                    Ver caso de estudio <span class="material-symbols-outlined">arrow_forward</span>
+</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-slate-900 text-slate-300 py-12 px-10 mt-auto">
+<div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="flex items-center gap-4 text-white">
+<div class="size-6 text-primary">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M8.57829 8.57829C5.52816 11.6284 3.451 15.5145 2.60947 19.7452C1.76794 23.9758 2.19984 28.361 3.85056 32.3462C5.50128 36.3314 8.29667 39.7376 11.8832 42.134C15.4698 44.5305 19.6865 45.8096 24 45.8096C28.3135 45.8096 32.5302 44.5305 36.1168 42.134C39.7033 39.7375 42.4987 36.3314 44.1494 32.3462C45.8002 28.361 46.2321 23.9758 45.3905 19.7452C44.549 15.5145 42.4718 11.6284 39.4217 8.57829L24 24L8.57829 8.57829Z" fill="currentColor"></path>
+</svg>
+</div>
+<span class="text-xl font-bold">Enlace</span>
+</div>
+<div class="flex gap-6 text-sm">
+<a class="hover:text-primary transition-colors" href="#">Privacidad</a>
+<a class="hover:text-primary transition-colors" href="#">Términos</a>
+<a class="hover:text-primary transition-colors" href="#">Dribbble</a>
+<a class="hover:text-primary transition-colors" href="#">LinkedIn</a>
+</div>
+<p class="text-sm text-slate-500">© 2024 Enlace Agency. All rights reserved.</p>
+</div>
+</footer>
+<!-- Persistent Chatbot Icon -->
+<div class="fixed bottom-6 right-6 z-50">
+<button class="flex items-center justify-center size-14 rounded-full bg-primary text-white shadow-lg shadow-primary/30 hover:bg-primary/90 hover:scale-105 transition-all cursor-pointer">
+<span class="material-symbols-outlined text-2xl">chat</span>
+</button>
+</div>
+</div>
+</body></html>
