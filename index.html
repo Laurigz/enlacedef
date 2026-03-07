@@ -1,1596 +1,833 @@
 <!DOCTYPE html>
-<html lang="es" data-theme="dark">
+<html lang="es">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Enlace Agency — Proyectos que hablan por sí solos</title>
-  <meta name="description" content="Enlace Agency: Diseño, tecnología y estrategia que generan resultados medibles para marcas ambiciosas. Portafolio de proyectos Premium." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
-
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Enlace Agencia Digital | Diseño, IA y Estrategia que Convierte</title>
+  <meta name="description"
+    content="Agencia digital especializada en branding, desarrollo web, inteligencia artificial y posicionamiento SEO. Conectamos tu marca con resultados reales." />
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap"
+    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet" />
+  <script id="tailwind-config">
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#002d62",
+            "bg-light": "#f5f6f8",
+            "bg-dark": "#101622",
+          },
+          fontFamily: { "display": ["Inter", "sans-serif"] },
+          borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+        },
+      },
+    }
+  </script>
   <style>
-    /* ===================== TOKENS & RESET ===================== */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --primary: #1f68f9;
-      --primary-glow: rgba(31,104,249,0.35);
-      --primary-soft: rgba(31,104,249,0.12);
-      --bg: #f5f6f8;
-      --bg-card: #ffffff;
-      --bg-nav: rgba(245,246,248,0.85);
-      --text: #0d1117;
-      --text-muted: #64748b;
-      --border: rgba(31,104,249,0.12);
-      --shadow: 0 8px 40px rgba(0,0,0,0.08);
-      --shadow-hover: 0 20px 60px rgba(31,104,249,0.18);
-      --radius: 16px;
-      --transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-      --footer-bg: #0d1117;
-    }
-
-    [data-theme="dark"] {
-      --bg: #080d1a;
-      --bg-card: #0f1829;
-      --bg-nav: rgba(8,13,26,0.85);
-      --text: #f0f6ff;
-      --text-muted: #94a3b8;
-      --border: rgba(31,104,249,0.2);
-      --shadow: 0 8px 40px rgba(0,0,0,0.4);
-      --shadow-hover: 0 20px 60px rgba(31,104,249,0.25);
-      --footer-bg: #050a15;
-    }
-
-    html { scroll-behavior: smooth; }
-
-    body {
+    * {
       font-family: 'Inter', sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      min-height: 100vh;
-      overflow-x: hidden;
-      transition: background var(--transition), color var(--transition);
     }
 
-    /* ===================== SCROLLBAR ===================== */
-    ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: var(--bg); }
-    ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 3px; }
-
-    /* ===================== NAVBAR ===================== */
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: var(--bg-nav);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--border);
-      padding: 0 40px;
-      height: 72px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      transition: all var(--transition);
-    }
-
-    header.scrolled {
-      box-shadow: 0 4px 30px rgba(31,104,249,0.1);
-    }
-
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      text-decoration: none;
-      color: var(--text);
-    }
-
-    .logo-icon {
-      width: 32px;
-      height: 32px;
-      color: var(--primary);
-      flex-shrink: 0;
-    }
-
-    .logo-text {
-      font-size: 1.25rem;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-    }
-
-    nav {
-      display: flex;
-      align-items: center;
-      gap: 36px;
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 32px;
-      list-style: none;
-    }
-
-    .nav-links a {
-      font-size: 0.875rem;
-      font-weight: 500;
-      color: var(--text-muted);
-      text-decoration: none;
-      position: relative;
-      transition: color var(--transition);
-      padding-bottom: 4px;
-    }
-
-    .nav-links a::after {
-      content: '';
-      position: absolute;
-      bottom: 0; left: 0;
-      width: 0;
-      height: 2px;
-      background: var(--primary);
-      border-radius: 2px;
-      transition: width var(--transition);
-    }
-
-    .nav-links a:hover,
-    .nav-links a.active {
-      color: var(--primary);
-    }
-
-    .nav-links a.active::after,
-    .nav-links a:hover::after {
-      width: 100%;
-    }
-
-    .nav-actions {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .btn-primary {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 10px 22px;
-      background: var(--primary);
-      color: #fff;
-      font-size: 0.875rem;
-      font-weight: 700;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      text-decoration: none;
-      transition: all var(--transition);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .btn-primary::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: rgba(255,255,255,0);
-      transition: background var(--transition);
-    }
-
-    .btn-primary:hover::before { background: rgba(255,255,255,0.12); }
-    .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 8px 24px var(--primary-glow); }
-    .btn-primary:active { transform: translateY(0); }
-
-    .btn-icon {
-      width: 40px; height: 40px;
-      border-radius: 10px;
-      border: 1px solid var(--border);
-      background: transparent;
-      color: var(--text-muted);
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all var(--transition);
-    }
-
-    .btn-icon:hover {
-      color: var(--primary);
-      border-color: var(--primary);
-      background: var(--primary-soft);
-    }
-
-    /* Hamburger */
-    .hamburger {
+    .hide-scrollbar::-webkit-scrollbar {
       display: none;
-      flex-direction: column;
-      gap: 5px;
-      cursor: pointer;
-      padding: 8px;
-      border: none;
-      background: transparent;
     }
 
-    .hamburger span {
-      display: block;
-      width: 22px;
-      height: 2px;
-      background: var(--text);
-      border-radius: 2px;
-      transition: all var(--transition);
-    }
-
-    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-    .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
-    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-
-    /* Mobile nav */
-    .mobile-menu {
-      display: none;
-      position: fixed;
-      top: 72px; left: 0; right: 0;
-      background: var(--bg-nav);
-      backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--border);
-      padding: 20px 24px 28px;
-      flex-direction: column;
-      gap: 8px;
-      z-index: 99;
-      transform: translateY(-100%);
-      opacity: 0;
-      transition: all var(--transition);
-    }
-
-    .mobile-menu.open {
-      transform: translateY(0);
-      opacity: 1;
-    }
-
-    .mobile-menu a {
-      font-size: 1rem;
-      font-weight: 600;
-      color: var(--text-muted);
-      text-decoration: none;
-      padding: 12px 0;
-      border-bottom: 1px solid var(--border);
-      transition: color var(--transition);
-    }
-
-    .mobile-menu a:hover { color: var(--primary); }
-    .mobile-menu .btn-primary { margin-top: 12px; width: fit-content; }
-
-    /* ===================== HERO ===================== */
-    .hero {
-      text-align: center;
-      padding: 80px 24px 48px;
-      max-width: 900px;
-      margin: 0 auto;
-    }
-
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: var(--primary-soft);
-      color: var(--primary);
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      padding: 6px 14px;
-      border-radius: 100px;
-      margin-bottom: 28px;
-      border: 1px solid var(--border);
-      animation: fadeInDown 0.6s ease both;
-    }
-
-    .hero-badge .dot {
-      width: 6px; height: 6px;
-      background: var(--primary);
-      border-radius: 50%;
-      animation: pulse 2s ease infinite;
-    }
-
-    h1.hero-title {
-      font-size: clamp(2.4rem, 6vw, 4.5rem);
-      font-weight: 900;
-      letter-spacing: -0.04em;
-      line-height: 1.05;
-      color: var(--text);
-      margin-bottom: 24px;
-      animation: fadeInUp 0.7s ease 0.1s both;
-    }
-
-    h1.hero-title .highlight {
-      background: linear-gradient(135deg, var(--primary) 0%, #60a5fa 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .hero-subtitle {
-      font-size: 1.1rem;
-      font-weight: 400;
-      color: var(--text-muted);
-      line-height: 1.7;
-      max-width: 560px;
-      margin: 0 auto;
-      animation: fadeInUp 0.7s ease 0.2s both;
-    }
-
-    /* ===================== STATS ===================== */
-    .stats-row {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 40px;
-      padding: 40px 24px 0;
-      max-width: 800px;
-      margin: 0 auto;
-      animation: fadeInUp 0.7s ease 0.3s both;
-    }
-
-    .stat-item {
-      text-align: center;
-    }
-
-    .stat-number {
-      font-size: 2rem;
-      font-weight: 900;
-      color: var(--primary);
-      letter-spacing: -0.03em;
-      display: block;
-    }
-
-    .stat-label {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      font-weight: 500;
-      margin-top: 2px;
-    }
-
-    /* ===================== FILTER TABS ===================== */
-    .portfolio-section {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 60px 24px 80px;
-    }
-
-    .filter-bar {
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      border-bottom: 1px solid var(--border);
-      margin-bottom: 48px;
-      overflow-x: auto;
+    .hide-scrollbar {
+      -ms-overflow-style: none;
       scrollbar-width: none;
-      padding-bottom: 0;
     }
 
-    .filter-bar::-webkit-scrollbar { display: none; }
-
-    .filter-tab {
-      flex-shrink: 0;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      padding: 12px 20px;
-      font-size: 0.875rem;
-      font-weight: 600;
-      color: var(--text-muted);
-      background: none;
-      border: none;
-      border-bottom: 2.5px solid transparent;
-      cursor: pointer;
-      transition: all var(--transition);
-      white-space: nowrap;
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
     }
 
-    .filter-tab:hover { color: var(--text); }
-
-    .filter-tab.active {
-      color: var(--primary);
-      border-bottom-color: var(--primary);
-    }
-
-    .filter-count {
-      font-size: 0.7rem;
-      font-weight: 700;
-      background: var(--primary-soft);
-      color: var(--primary);
-      padding: 2px 7px;
-      border-radius: 100px;
-      transition: all var(--transition);
-    }
-
-    .filter-tab.active .filter-count {
-      background: var(--primary);
-      color: #fff;
-    }
-
-    /* ===================== PROJECT GRID ===================== */
-    .project-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 28px;
-      align-items: start;
-    }
-
-    @media (max-width: 768px) {
-      .project-grid { grid-template-columns: 1fr; }
-      .project-card.offset { margin-top: 0 !important; }
-    }
-
-    .project-card {
-      position: relative;
-      overflow: hidden;
-      border-radius: var(--radius);
-      background: var(--bg-card);
-      cursor: pointer;
-      box-shadow: var(--shadow);
-      transition: all var(--transition);
-      opacity: 0;
-      transform: translateY(32px);
-    }
-
-    .project-card.visible {
+    .slide-dot.active {
       opacity: 1;
-      transform: translateY(0);
     }
 
-    .project-card.hidden {
-      display: none;
+    .slide-dot {
+      opacity: 0.4;
+      transition: opacity 0.3s;
+      cursor: pointer;
     }
 
-    .project-card.offset {
-      margin-top: 48px;
+    html {
+      scroll-behavior: smooth;
     }
 
-    .project-card:hover {
-      box-shadow: var(--shadow-hover);
-      transform: translateY(-6px);
+    .filter-btn.active {
+      background: #002d62;
+      color: white;
     }
 
-    .project-card.offset:hover {
-      transform: translateY(calc(48px - 6px));
-    }
-
-    .card-image {
-      width: 100%;
-      aspect-ratio: 4/3;
-      object-fit: cover;
+    .portfolio-item {
       display: block;
-      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    .project-card:hover .card-image {
-      transform: scale(1.06);
-    }
-
-    /* Default overlay (visible, fades out on hover) */
-    .card-overlay-default {
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      padding: 36px 28px 28px;
-      background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 50%, transparent 100%);
-      transition: opacity var(--transition);
-    }
-
-    .card-category {
-      font-size: 0.72rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--primary);
-      margin-bottom: 6px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .card-category::before {
-      content: '';
-      display: inline-block;
-      width: 16px; height: 2px;
-      background: var(--primary);
-      border-radius: 2px;
-    }
-
-    .card-title {
-      font-size: 1.4rem;
-      font-weight: 800;
-      color: #fff;
-      line-height: 1.2;
-      margin-bottom: 8px;
-      letter-spacing: -0.02em;
-    }
-
-    .card-metric {
-      font-size: 0.82rem;
-      color: rgba(255,255,255,0.75);
-      font-weight: 500;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .card-metric .metric-icon {
-      font-size: 14px;
-      color: #4ade80;
-    }
-
-    /* Hover overlay */
-    .card-overlay-hover {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, rgba(31,104,249,0.96) 0%, rgba(15,52,140,0.98) 100%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 32px;
-      opacity: 0;
-      transform: translateY(12px);
-      transition: all var(--transition);
-    }
-
-    .project-card:hover .card-overlay-hover {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .project-card:hover .card-overlay-default {
-      opacity: 0;
-    }
-
-    .hover-type {
-      font-size: 0.72rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: rgba(255,255,255,0.7);
-      margin-bottom: 12px;
-    }
-
-    .hover-title {
-      font-size: 1.8rem;
-      font-weight: 900;
-      color: #fff;
-      letter-spacing: -0.03em;
-      margin-bottom: 24px;
-      line-height: 1.1;
-    }
-
-    .hover-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      color: #fff;
-      font-size: 0.9rem;
-      font-weight: 700;
-      text-decoration: none;
-      border-bottom: 2px solid rgba(255,255,255,0.4);
-      padding-bottom: 4px;
-      transition: all 0.2s ease;
-    }
-
-    .hover-cta:hover {
-      border-bottom-color: #fff;
-      gap: 14px;
-    }
-
-    /* Tags on hover overlay */
-    .hover-tags {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      justify-content: center;
-      margin-bottom: 20px;
-    }
-
-    .hover-tag {
-      font-size: 0.72rem;
-      background: rgba(255,255,255,0.15);
-      color: rgba(255,255,255,0.9);
-      padding: 4px 10px;
-      border-radius: 100px;
-      font-weight: 600;
-    }
-
-    /* ===================== FOOTER ===================== */
-    footer {
-      background: var(--footer-bg);
-      color: #94a3b8;
-      padding: 56px 40px 36px;
-      border-top: 1px solid rgba(255,255,255,0.06);
-    }
-
-    .footer-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .footer-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      flex-wrap: wrap;
-      gap: 40px;
-      padding-bottom: 40px;
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-      margin-bottom: 28px;
-    }
-
-    .footer-brand .logo { color: #fff; }
-    .footer-brand p {
-      margin-top: 12px;
-      font-size: 0.875rem;
-      max-width: 280px;
-      line-height: 1.6;
-    }
-
-    .footer-links-group h4 {
-      font-size: 0.78rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: #fff;
-      margin-bottom: 16px;
-    }
-
-    .footer-links-group ul {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .footer-links-group ul a {
-      font-size: 0.875rem;
-      color: #94a3b8;
-      text-decoration: none;
-      transition: color var(--transition);
-    }
-
-    .footer-links-group ul a:hover { color: var(--primary); }
-
-    .footer-bottom {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 16px;
-      font-size: 0.8rem;
-    }
-
-    .footer-bottom p { color: #4b5563; }
-
-    .social-links {
-      display: flex;
-      gap: 12px;
-    }
-
-    .social-link {
-      width: 36px; height: 36px;
-      border-radius: 8px;
-      border: 1px solid rgba(255,255,255,0.08);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #94a3b8;
-      text-decoration: none;
-      font-size: 16px;
-      transition: all var(--transition);
-    }
-
-    .social-link:hover {
-      border-color: var(--primary);
-      color: var(--primary);
-      background: var(--primary-soft);
-    }
-
-    /* ===================== CHATBOT ===================== */
-    .chat-fab {
-      position: fixed;
-      bottom: 28px; right: 28px;
-      z-index: 200;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 12px;
-    }
-
-    .chat-button {
-      width: 58px; height: 58px;
-      border-radius: 50%;
-      background: var(--primary);
-      color: #fff;
-      border: none;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 8px 32px var(--primary-glow);
-      transition: all var(--transition);
-      position: relative;
-    }
-
-    .chat-button:hover { transform: scale(1.08); background: #1a5ae0; }
-    .chat-button .material-symbols-outlined { font-size: 26px; }
-
-    .chat-badge {
-      position: absolute;
-      top: -4px; right: -4px;
-      width: 18px; height: 18px;
-      background: #ef4444;
-      border-radius: 50%;
-      font-size: 0.65rem;
-      font-weight: 700;
-      color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border: 2px solid var(--bg);
-      animation: pulse 2s ease infinite;
-    }
-
-    .chat-tooltip {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      color: var(--text);
-      font-size: 0.82rem;
-      font-weight: 500;
-      padding: 8px 14px;
-      border-radius: 10px;
-      box-shadow: var(--shadow);
-      white-space: nowrap;
-      opacity: 1;
-      transition: opacity var(--transition);
-      pointer-events: none;
-    }
-
-    /* Chat window */
-    .chat-window {
-      position: fixed;
-      bottom: 100px; right: 28px;
-      width: 360px;
-      max-height: 520px;
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      box-shadow: 0 24px 80px rgba(0,0,0,0.3);
-      display: flex;
-      flex-direction: column;
-      z-index: 201;
-      overflow: hidden;
-      transform: scale(0.9) translateY(20px);
-      opacity: 0;
-      pointer-events: none;
-      transform-origin: bottom right;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .chat-window.open {
-      transform: scale(1) translateY(0);
-      opacity: 1;
-      pointer-events: all;
-    }
-
-    .chat-header {
-      padding: 18px 20px;
-      background: linear-gradient(135deg, var(--primary) 0%, #3b82f6 100%);
-      color: #fff;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .chat-avatar {
-      width: 40px; height: 40px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.2);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 20px;
-    }
-
-    .chat-header-info h3 { font-size: 0.95rem; font-weight: 700; }
-    .chat-header-info p { font-size: 0.72rem; opacity: 0.85; margin-top: 2px; }
-
-    .chat-header-actions { margin-left: auto; }
-
-    .chat-close {
-      background: rgba(255,255,255,0.15);
-      border: none;
-      color: #fff;
-      width: 30px; height: 30px;
-      border-radius: 8px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: background var(--transition);
-    }
-
-    .chat-close:hover { background: rgba(255,255,255,0.25); }
-
-    .chat-messages {
-      flex: 1;
-      overflow-y: auto;
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      scrollbar-width: thin;
-      scrollbar-color: var(--border) transparent;
-    }
-
-    .message {
-      display: flex;
-      gap: 10px;
-      animation: fadeInUp 0.3s ease;
-    }
-
-    .message.user { flex-direction: row-reverse; }
-
-    .message-avatar {
-      width: 32px; height: 32px;
-      border-radius: 50%;
-      background: var(--primary-soft);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 14px;
-      color: var(--primary);
-      flex-shrink: 0;
-    }
-
-    .message.user .message-avatar {
-      background: var(--primary);
-      color: #fff;
-    }
-
-    .message-bubble {
-      max-width: 75%;
-      padding: 12px 16px;
-      border-radius: 16px;
-      font-size: 0.875rem;
-      line-height: 1.5;
-    }
-
-    .message.bot .message-bubble {
-      background: var(--bg);
-      color: var(--text);
-      border-bottom-left-radius: 4px;
-    }
-
-    .message.user .message-bubble {
-      background: var(--primary);
-      color: #fff;
-      border-bottom-right-radius: 4px;
-    }
-
-    .quick-replies {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      padding: 0 20px 16px;
-    }
-
-    .quick-reply {
-      background: var(--primary-soft);
-      color: var(--primary);
-      border: 1px solid var(--border);
-      border-radius: 100px;
-      padding: 6px 14px;
-      font-size: 0.78rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all var(--transition);
-    }
-
-    .quick-reply:hover {
-      background: var(--primary);
-      color: #fff;
-    }
-
-    .chat-input-area {
-      padding: 16px 20px;
-      border-top: 1px solid var(--border);
-      display: flex;
-      gap: 10px;
-    }
-
-    .chat-input {
-      flex: 1;
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 10px 14px;
-      font-size: 0.875rem;
-      font-family: inherit;
-      color: var(--text);
-      outline: none;
-      transition: border-color var(--transition);
-      resize: none;
-    }
-
-    .chat-input:focus { border-color: var(--primary); }
-
-    .chat-send {
-      width: 40px; height: 40px;
-      background: var(--primary);
-      border: none;
-      border-radius: 10px;
-      color: #fff;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      transition: all var(--transition);
-    }
-
-    .chat-send:hover { background: #1a5ae0; transform: scale(1.05); }
-
-    /* Typing indicator */
-    .typing {
-      display: flex;
-      gap: 4px;
-      align-items: center;
-      padding: 10px 14px;
-    }
-
-    .typing span {
-      width: 7px; height: 7px;
-      background: var(--text-muted);
-      border-radius: 50%;
-      animation: typingBounce 1.2s ease infinite;
-    }
-
-    .typing span:nth-child(2) { animation-delay: 0.2s; }
-    .typing span:nth-child(3) { animation-delay: 0.4s; }
-
-    /* ===================== ANIMATIONS ===================== */
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes fadeInDown {
-      from { opacity: 0; transform: translateY(-16px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50%       { opacity: 0.7; transform: scale(1.2); }
-    }
-
-    @keyframes typingBounce {
-      0%, 80%, 100% { transform: translateY(0); }
-      40%           { transform: translateY(-8px); }
-    }
-
-    @keyframes shimmer {
-      0%   { background-position: -200% center; }
-      100% { background-position: 200% center; }
-    }
-
-    /* ===================== RESPONSIVE ===================== */
-    @media (max-width: 900px) {
-      header { padding: 0 20px; }
-      .nav-links, .nav-actions .btn-primary { display: none; }
-      .hamburger { display: flex; }
-      .mobile-menu { display: flex; }
-      .hero { padding: 60px 20px 36px; }
-      footer { padding: 40px 20px 28px; }
-      .footer-top { flex-direction: column; }
-    }
-
-    @media (max-width: 480px) {
-      .stats-row { gap: 24px; }
-      .chat-window { width: calc(100vw - 32px); right: 16px; bottom: 90px; }
-    }
-
-    /* Separator line */
-    .separator {
-      width: 60px;
-      height: 3px;
-      background: linear-gradient(90deg, var(--primary), #60a5fa);
-      border-radius: 3px;
-      margin: 0 auto 48px;
-    }
-
-    /* Empty state */
-    .empty-state {
+    .portfolio-item.hidden {
       display: none;
-      text-align: center;
-      padding: 60px 20px;
-      color: var(--text-muted);
-      grid-column: span 2;
     }
-
-    .empty-state .material-symbols-outlined {
-      font-size: 48px;
-      color: var(--border);
-      margin-bottom: 12px;
-    }
-
-    .empty-state.visible { display: block; }
   </style>
 </head>
 
-<body>
+<body class="bg-transparent text-slate-900 overflow-x-hidden antialiased">
 
-<!-- ===================== HEADER ===================== -->
-<header id="site-header">
-  <a href="#" class="logo">
-    <svg class="logo-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M8.578 8.578C5.528 11.628 3.451 15.515 2.61 19.745C1.768 23.976 2.2 28.361 3.851 32.346C5.501 36.331 8.297 39.738 11.883 42.134C15.47 44.53 19.687 45.81 24 45.81C28.314 45.81 32.53 44.53 36.117 42.134C39.703 39.737 42.499 36.331 44.149 32.346C45.8 28.361 46.232 23.976 45.391 19.745C44.549 15.515 42.472 11.628 39.422 8.578L24 24L8.578 8.578Z" fill="currentColor"/>
-    </svg>
-    <span class="logo-text">Enlace</span>
-  </a>
+  <!-- SHARED NAV (injected by navbar.js) -->
+  <div id="site-nav"></div>
 
-  <nav>
-    <ul class="nav-links">
-      <li><a href="#portfolio" class="active" data-section="portfolio">Portafolio</a></li>
-      <li><a href="#servicios" data-section="servicios">Servicios</a></li>
-      <li><a href="#nosotros" data-section="nosotros">Nosotros</a></li>
-      <li><a href="#contacto" data-section="contacto">Contacto</a></li>
-    </ul>
-    <div class="nav-actions">
-      <button class="btn-icon" id="theme-toggle" title="Cambiar tema" aria-label="Cambiar tema">
-        <span class="material-symbols-outlined" style="font-size:20px">dark_mode</span>
-      </button>
-      <a href="#contacto" class="btn-primary">
-        Empezar Proyecto
-        <span class="material-symbols-outlined" style="font-size:16px">arrow_forward</span>
-      </a>
-    </div>
-  </nav>
+  <main id="inicio">
 
-  <button class="hamburger" id="hamburger" aria-label="Menú">
-    <span></span><span></span><span></span>
-  </button>
-</header>
+    <!-- HERO SECTION (Glassmorphism Trust Hero) -->
+    <section id="hero-section" class="relative w-full overflow-hidden font-display py-24 mb-16">
+      <style>
+        @keyframes fadeSlideIn {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
 
-<!-- Mobile Menu -->
-<div class="mobile-menu" id="mobile-menu">
-  <a href="#portfolio" class="mobile-link">Portafolio</a>
-  <a href="#servicios" class="mobile-link">Servicios</a>
-  <a href="#nosotros" class="mobile-link">Nosotros</a>
-  <a href="#contacto" class="mobile-link">Contacto</a>
-  <a href="#contacto" class="btn-primary">Empezar Proyecto</a>
-</div>
-
-<!-- ===================== HERO ===================== -->
-<section id="portfolio">
-  <div class="hero">
-    <div class="hero-badge">
-      <div class="dot"></div>
-      Portafolio 2024 · 50+ Proyectos
-    </div>
-    <h1 class="hero-title">
-      Proyectos que<br/>
-      <span class="highlight">hablan por sí solos.</span>
-    </h1>
-    <p class="hero-subtitle">
-      Diseño, tecnología y estrategia que generan resultados medibles para marcas ambiciosas.
-    </p>
-  </div>
-
-  <!-- Stats -->
-  <div class="stats-row">
-    <div class="stat-item">
-      <span class="stat-number">+200%</span>
-      <span class="stat-label">Crecimiento Promedio</span>
-    </div>
-    <div class="stat-item">
-      <span class="stat-number">50+</span>
-      <span class="stat-label">Proyectos Entregados</span>
-    </div>
-    <div class="stat-item">
-      <span class="stat-number">98%</span>
-      <span class="stat-label">Clientes Satisfechos</span>
-    </div>
-    <div class="stat-item">
-      <span class="stat-number">5★</span>
-      <span class="stat-label">Calificación Media</span>
-    </div>
-  </div>
-</section>
-
-<!-- ===================== PORTFOLIO ===================== -->
-<div class="portfolio-section">
-  <!-- Filter Tabs -->
-  <div class="filter-bar" role="tablist">
-    <button class="filter-tab active" data-filter="all" role="tab" aria-selected="true">
-      Todo <span class="filter-count">4</span>
-    </button>
-    <button class="filter-tab" data-filter="branding" role="tab" aria-selected="false">
-      Branding <span class="filter-count">1</span>
-    </button>
-    <button class="filter-tab" data-filter="web" role="tab" aria-selected="false">
-      Web <span class="filter-count">2</span>
-    </button>
-    <button class="filter-tab" data-filter="ai" role="tab" aria-selected="false">
-      AI <span class="filter-count">2</span>
-    </button>
-    <button class="filter-tab" data-filter="seo" role="tab" aria-selected="false">
-      SEO <span class="filter-count">1</span>
-    </button>
-  </div>
-
-  <div class="separator"></div>
-
-  <!-- Grid -->
-  <div class="project-grid" id="project-grid">
-
-    <!-- Card 1: FinTech -->
-    <article class="project-card" data-category="web ai" data-index="0">
-      <img src="project_fintech_1772681399299.png" alt="Plataforma de Inversión Global — Dashboard FinTech" class="card-image" loading="eager" />
-      <div class="card-overlay-default">
-        <p class="card-category">FinTech Startup</p>
-        <h3 class="card-title">Plataforma de Inversión Global</h3>
-        <p class="card-metric">
-          <span class="material-symbols-outlined metric-icon">trending_up</span>
-          Crecimiento de Leads +200%
-        </p>
-      </div>
-      <div class="card-overlay-hover">
-        <p class="hover-type">Web &amp; UX/UI</p>
-        <h3 class="hover-title">Plataforma de Inversión</h3>
-        <div class="hover-tags">
-          <span class="hover-tag">Dashboard</span>
-          <span class="hover-tag">React</span>
-          <span class="hover-tag">AI</span>
-        </div>
-        <a href="#" class="hover-cta">
-          Ver caso de estudio
-          <span class="material-symbols-outlined" style="font-size:18px">arrow_forward</span>
-        </a>
-      </div>
-    </article>
-
-    <!-- Card 2: Branding -->
-    <article class="project-card offset" data-category="branding ai" data-index="1">
-      <img src="project_branding_1772681415994.png" alt="Rebranding Sostenible — EcoRetail" class="card-image" loading="eager" />
-      <div class="card-overlay-default">
-        <p class="card-category">EcoRetail</p>
-        <h3 class="card-title">Rebranding Sostenible</h3>
-        <p class="card-metric">
-          <span class="material-symbols-outlined metric-icon">trending_up</span>
-          Incremento en ventas +150%
-        </p>
-      </div>
-      <div class="card-overlay-hover">
-        <p class="hover-type">Branding &amp; AI</p>
-        <h3 class="hover-title">Rebranding Sostenible</h3>
-        <div class="hover-tags">
-          <span class="hover-tag">Brand Identity</span>
-          <span class="hover-tag">Sostenibilidad</span>
-        </div>
-        <a href="#" class="hover-cta">
-          Ver caso de estudio
-          <span class="material-symbols-outlined" style="font-size:18px">arrow_forward</span>
-        </a>
-      </div>
-    </article>
-
-    <!-- Card 3: HealthTech -->
-    <article class="project-card" data-category="ai web" data-index="2">
-      <img src="project_healthtech_1772681430285.png" alt="Integración AI Médica — HealthTech SAAS" class="card-image" loading="lazy" />
-      <div class="card-overlay-default">
-        <p class="card-category">HealthTech SAAS</p>
-        <h3 class="card-title">Integración AI Médica</h3>
-        <p class="card-metric">
-          <span class="material-symbols-outlined metric-icon">trending_up</span>
-          Reducción de tiempos 40%
-        </p>
-      </div>
-      <div class="card-overlay-hover">
-        <p class="hover-type">AI &amp; Web</p>
-        <h3 class="hover-title">Integración AI Médica</h3>
-        <div class="hover-tags">
-          <span class="hover-tag">Machine Learning</span>
-          <span class="hover-tag">SAAS</span>
-          <span class="hover-tag">API</span>
-        </div>
-        <a href="#" class="hover-cta">
-          Ver caso de estudio
-          <span class="material-symbols-outlined" style="font-size:18px">arrow_forward</span>
-        </a>
-      </div>
-    </article>
-
-    <!-- Card 4: ArqDesign -->
-    <article class="project-card offset" data-category="web seo" data-index="3">
-      <img src="project_arq_1772681445890.png" alt="Portfolio Interactivo 3D — ArqDesign Studio" class="card-image" loading="lazy" />
-      <div class="card-overlay-default">
-        <p class="card-category">ArqDesign Studio</p>
-        <h3 class="card-title">Portfolio Interactivo 3D</h3>
-        <p class="card-metric">
-          <span class="material-symbols-outlined metric-icon">trending_up</span>
-          Tráfico orgánico +300%
-        </p>
-      </div>
-      <div class="card-overlay-hover">
-        <p class="hover-type">Web &amp; SEO</p>
-        <h3 class="hover-title">Portfolio Interactivo</h3>
-        <div class="hover-tags">
-          <span class="hover-tag">Three.js</span>
-          <span class="hover-tag">SEO</span>
-          <span class="hover-tag">Animación</span>
-        </div>
-        <a href="#" class="hover-cta">
-          Ver caso de estudio
-          <span class="material-symbols-outlined" style="font-size:18px">arrow_forward</span>
-        </a>
-      </div>
-    </article>
-
-    <!-- Empty state -->
-    <div class="empty-state" id="empty-state">
-      <span class="material-symbols-outlined">search_off</span>
-      <p>No hay proyectos en esta categoría aún.</p>
-    </div>
-
-  </div>
-</div>
-
-<!-- ===================== FOOTER ===================== -->
-<footer id="contacto">
-  <div class="footer-inner">
-    <div class="footer-top">
-      <div class="footer-brand">
-        <a href="#" class="logo">
-          <svg class="logo-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M8.578 8.578C5.528 11.628 3.451 15.515 2.61 19.745C1.768 23.976 2.2 28.361 3.851 32.346C5.501 36.331 8.297 39.738 11.883 42.134C15.47 44.53 19.687 45.81 24 45.81C28.314 45.81 32.53 44.53 36.117 42.134C39.703 39.737 42.499 36.331 44.149 32.346C45.8 28.361 46.232 23.976 45.391 19.745C44.549 15.515 42.472 11.628 39.422 8.578L24 24L8.578 8.578Z" fill="currentColor"/>
-          </svg>
-          <span class="logo-text">Enlace</span>
-        </a>
-        <p>Diseño, tecnología y estrategia que generan resultados medibles para marcas ambiciosas.</p>
-      </div>
-      <div class="footer-links-group">
-        <h4>Servicios</h4>
-        <ul>
-          <li><a href="#">Diseño Web</a></li>
-          <li><a href="#">Branding</a></li>
-          <li><a href="#">Inteligencia Artificial</a></li>
-          <li><a href="#">SEO &amp; Crecimiento</a></li>
-        </ul>
-      </div>
-      <div class="footer-links-group">
-        <h4>Empresa</h4>
-        <ul>
-          <li><a href="#">Nosotros</a></li>
-          <li><a href="#">Portafolio</a></li>
-          <li><a href="#">Blog</a></li>
-          <li><a href="#">Contacto</a></li>
-        </ul>
-      </div>
-      <div class="footer-links-group">
-        <h4>Legal</h4>
-        <ul>
-          <li><a href="#">Privacidad</a></li>
-          <li><a href="#">Términos</a></li>
-          <li><a href="#">Cookies</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>© 2024 Enlace Agency. Todos los derechos reservados.</p>
-      <div class="social-links">
-        <a href="#" class="social-link" title="Dribbble" aria-label="Dribbble">
-          <span class="material-symbols-outlined" style="font-size:16px">sports_basketball</span>
-        </a>
-        <a href="#" class="social-link" title="LinkedIn" aria-label="LinkedIn">
-          <span class="material-symbols-outlined" style="font-size:16px">work</span>
-        </a>
-        <a href="#" class="social-link" title="Instagram" aria-label="Instagram">
-          <span class="material-symbols-outlined" style="font-size:16px">photo_camera</span>
-        </a>
-        <a href="#" class="social-link" title="Twitter/X" aria-label="Twitter">
-          <span class="material-symbols-outlined" style="font-size:16px">rss_feed</span>
-        </a>
-      </div>
-    </div>
-  </div>
-</footer>
-
-<!-- ===================== CHATBOT ===================== -->
-<div class="chat-fab">
-  <div class="chat-tooltip" id="chat-tooltip">💬 ¡Hola! ¿En qué te ayudo?</div>
-  <button class="chat-button" id="chat-toggle" aria-label="Abrir chat">
-    <span class="material-symbols-outlined" id="chat-icon">chat</span>
-    <div class="chat-badge">1</div>
-  </button>
-</div>
-
-<div class="chat-window" id="chat-window" role="dialog" aria-label="Chat de soporte">
-  <div class="chat-header">
-    <div class="chat-avatar">🤖</div>
-    <div class="chat-header-info">
-      <h3>Asistente Enlace</h3>
-      <p>🟢 En línea · Responde en minutos</p>
-    </div>
-    <div class="chat-header-actions">
-      <button class="chat-close" id="chat-close" aria-label="Cerrar chat">
-        <span class="material-symbols-outlined" style="font-size:18px">close</span>
-      </button>
-    </div>
-  </div>
-
-  <div class="chat-messages" id="chat-messages">
-    <div class="message bot">
-      <div class="message-avatar">🤖</div>
-      <div class="message-bubble">
-        ¡Hola! Soy el asistente de <strong>Enlace Agency</strong>. ¿En qué puedo ayudarte hoy?
-      </div>
-    </div>
-  </div>
-
-  <div class="quick-replies" id="quick-replies">
-    <button class="quick-reply" data-message="¿Cuáles son sus servicios?">Ver servicios</button>
-    <button class="quick-reply" data-message="Quiero empezar un proyecto">Empezar proyecto</button>
-    <button class="quick-reply" data-message="¿Cuáles son sus precios?">Precios</button>
-    <button class="quick-reply" data-message="¿Cómo me contacto?">Contacto</button>
-  </div>
-
-  <div class="chat-input-area">
-    <input
-      type="text"
-      class="chat-input"
-      id="chat-input"
-      placeholder="Escribe tu mensaje..."
-      autocomplete="off"
-      aria-label="Mensaje"
-    />
-    <button class="chat-send" id="chat-send" aria-label="Enviar mensaje">
-      <span class="material-symbols-outlined" style="font-size:20px">send</span>
-    </button>
-  </div>
-</div>
-
-<!-- ===================== JAVASCRIPT ===================== -->
-<script>
-  /* ---- Theme Toggle ---- */
-  const html = document.documentElement;
-  const themeBtn = document.getElementById('theme-toggle');
-  const themeIcon = themeBtn.querySelector('.material-symbols-outlined');
-
-  // Default dark
-  let isDark = true;
-
-  themeBtn.addEventListener('click', () => {
-    isDark = !isDark;
-    html.setAttribute('data-theme', isDark ? 'dark' : 'light');
-    themeIcon.textContent = isDark ? 'dark_mode' : 'light_mode';
-  });
-
-  /* ---- Hamburger / Mobile Menu ---- */
-  const hamburger = document.getElementById('hamburger');
-  const mobileMenu = document.getElementById('mobile-menu');
-
-  hamburger.addEventListener('click', () => {
-    const open = hamburger.classList.toggle('open');
-    mobileMenu.classList.toggle('open', open);
-    hamburger.setAttribute('aria-expanded', open);
-  });
-
-  // Close on link click
-  document.querySelectorAll('.mobile-link').forEach(link => {
-    link.addEventListener('click', () => {
-      hamburger.classList.remove('open');
-      mobileMenu.classList.remove('open');
-    });
-  });
-
-  /* ---- Scrolled header ---- */
-  const header = document.getElementById('site-header');
-  window.addEventListener('scroll', () => {
-    header.classList.toggle('scrolled', window.scrollY > 20);
-  }, { passive: true });
-
-  /* ---- Scroll-spy nav ---- */
-  const sections = ['portfolio', 'servicios', 'nosotros', 'contacto'];
-  const navLinks = document.querySelectorAll('.nav-links a[data-section]');
-
-  const sectionObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        navLinks.forEach(a => {
-          a.classList.toggle('active', a.dataset.section === entry.target.id);
-        });
-      }
-    });
-  }, { threshold: 0.3 });
-
-  sections.forEach(id => {
-    const el = document.getElementById(id);
-    if (el) sectionObserver.observe(el);
-  });
-
-  /* ---- Project cards scroll animation ---- */
-  const cards = document.querySelectorAll('.project-card');
-
-  const cardObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const delay = (parseInt(entry.target.dataset.index) % 2) * 0.12;
-        entry.target.style.transitionDelay = `${delay}s`;
-        entry.target.classList.add('visible');
-        cardObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1 });
-
-  cards.forEach(card => cardObserver.observe(card));
-
-  /* ---- Filter Tabs ---- */
-  const filterTabs = document.querySelectorAll('.filter-tab');
-  const projectCards = document.querySelectorAll('.project-card');
-  const emptyState = document.getElementById('empty-state');
-
-  filterTabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      // Update active tab
-      filterTabs.forEach(t => {
-        t.classList.remove('active');
-        t.setAttribute('aria-selected', 'false');
-      });
-      tab.classList.add('active');
-      tab.setAttribute('aria-selected', 'true');
-
-      const filter = tab.dataset.filter;
-      let visibleCount = 0;
-
-      projectCards.forEach(card => {
-        const cats = card.dataset.category.split(' ');
-        const match = filter === 'all' || cats.includes(filter);
-
-        if (match) {
-          card.classList.remove('hidden');
-          visibleCount++;
-          // Re-trigger animation
-          card.classList.remove('visible');
-          setTimeout(() => card.classList.add('visible'), 50);
-        } else {
-          card.classList.add('hidden');
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
         }
-      });
 
-      // Adjust offset class on first odd visible card
-      const visibleCards = [...projectCards].filter(c => !c.classList.contains('hidden'));
-      visibleCards.forEach((c, i) => {
-        c.classList.toggle('offset', i % 2 !== 0);
-      });
+        @keyframes marquee {
+          from {
+            transform: translateX(0);
+          }
 
-      // Show/hide empty state
-      emptyState.classList.toggle('visible', visibleCount === 0);
-    });
-  });
+          to {
+            transform: translateX(-50%);
+          }
+        }
 
-  /* ---- Chatbot ---- */
-  const chatToggle = document.getElementById('chat-toggle');
-  const chatClose = document.getElementById('chat-close');
-  const chatWindow = document.getElementById('chat-window');
-  const chatIcon = document.getElementById('chat-icon');
-  const chatTooltip = document.getElementById('chat-tooltip');
-  const chatInput = document.getElementById('chat-input');
-  const chatSend = document.getElementById('chat-send');
-  const chatMessages = document.getElementById('chat-messages');
-  const quickRepliesEl = document.getElementById('quick-replies');
+        .animate-fade-in {
+          animation: fadeSlideIn 0.8s ease-out forwards;
+          opacity: 0;
+        }
 
-  let chatOpen = false;
+        .animate-marquee {
+          animation: marquee 40s linear infinite;
+        }
 
-  // Auto-hide tooltip after 4s
-  setTimeout(() => { chatTooltip.style.opacity = '0'; }, 4000);
+        .delay-100 {
+          animation-delay: 0.1s;
+        }
 
-  function openChat() {
-    chatOpen = true;
-    chatWindow.classList.add('open');
-    chatIcon.textContent = 'close';
-    chatTooltip.style.opacity = '0';
-    // Remove badge
-    const badge = chatToggle.querySelector('.chat-badge');
-    if (badge) badge.remove();
-    chatInput.focus();
-  }
+        .delay-200 {
+          animation-delay: 0.2s;
+        }
 
-  function closeChat() {
-    chatOpen = false;
-    chatWindow.classList.remove('open');
-    chatIcon.textContent = 'chat';
-  }
+        .delay-300 {
+          animation-delay: 0.3s;
+        }
 
-  chatToggle.addEventListener('click', () => chatOpen ? closeChat() : openChat());
-  chatClose.addEventListener('click', closeChat);
+        .delay-400 {
+          animation-delay: 0.4s;
+        }
 
-  // Quick replies
-  quickRepliesEl.querySelectorAll('.quick-reply').forEach(btn => {
-    btn.addEventListener('click', () => {
-      sendMessage(btn.dataset.message);
-    });
-  });
+        .delay-500 {
+          animation-delay: 0.5s;
+        }
+      </style>
 
-  // Send on Enter
-  chatInput.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter' && !e.shiftKey) {
-      e.preventDefault();
-      sendMessage(chatInput.value.trim());
-    }
-  });
+      <!-- Glass Background Overlay over the Infinite Grid -->
+      <div class="absolute inset-0 z-0 bg-white/20 backdrop-blur-[2px]"></div>
 
-  chatSend.addEventListener('click', () => sendMessage(chatInput.value.trim()));
+      <div class="relative z-10 mx-auto max-w-7xl px-4 pt-12 pb-12 sm:px-6 md:pt-20 md:pb-20 lg:px-8">
+        <div class="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-8 items-start">
 
-  function addMessage(text, type) {
-    const div = document.createElement('div');
-    div.classList.add('message', type);
-    div.innerHTML = `
-      <div class="message-avatar">${type === 'bot' ? '🤖' : '👤'}</div>
-      <div class="message-bubble">${text}</div>
-    `;
-    chatMessages.appendChild(div);
-    chatMessages.scrollTop = chatMessages.scrollHeight;
-  }
+          <!-- LEFT COLUMN -->
+          <div class="lg:col-span-7 flex flex-col justify-center space-y-8 pt-8">
 
-  function showTyping() {
-    const div = document.createElement('div');
-    div.classList.add('message', 'bot');
-    div.id = 'typing-indicator';
-    div.innerHTML = `
-      <div class="message-avatar">🤖</div>
-      <div class="message-bubble">
-        <div class="typing">
-          <span></span><span></span><span></span>
+            <!-- Badge -->
+            <div class="animate-fade-in delay-100 flex justify-start">
+              <div
+                class="inline-flex items-center gap-2 rounded-full border border-sky-400/20 bg-white/60 px-4 py-2 backdrop-blur-md shadow-sm transition-colors hover:bg-white">
+                <span
+                  class="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-slate-700 flex items-center gap-2">
+                  Diseño Multipremiado
+                  <span class="material-symbols-outlined text-[16px] text-yellow-500"
+                    style="font-variation-settings: 'FILL' 1;">star</span>
+                </span>
+              </div>
+            </div>
+
+            <!-- Heading -->
+            <h1
+              class="animate-fade-in delay-200 text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-black tracking-tighter leading-[0.95] text-slate-900 drop-shadow-sm"
+              style="-webkit-mask-image: linear-gradient(180deg, black 0%, black 90%, transparent 100%); mask-image: linear-gradient(180deg, black 0%, black 90%, transparent 100%);">
+              Diseñando<br />
+              <span class="bg-gradient-to-br from-primary via-sky-500 to-sky-300 bg-clip-text text-transparent">
+                Experiencias
+              </span><br />
+              Que Impactan
+            </h1>
+
+            <!-- Description -->
+            <p class="animate-fade-in delay-300 max-w-xl text-lg text-slate-600 leading-relaxed font-medium">
+              Diseñamos interfaces que combinan belleza con funcionalidad, creando experiencias fluidas que los usuarios
+              aman y que hacen crecer tu negocio conectándolo con resultados reales.
+            </p>
+
+            <!-- CTA Buttons -->
+            <div class="animate-fade-in delay-400 flex flex-col sm:flex-row gap-4">
+              <a href="#portafolio"
+                class="group inline-flex items-center justify-center gap-2 rounded-full bg-slate-900 px-8 py-4 text-sm font-bold text-white transition-all hover:scale-[1.02] hover:bg-primary active:scale-[0.98] shadow-lg shadow-primary/20">
+                Ver Portafolio
+                <span
+                  class="material-symbols-outlined text-[18px] transition-transform group-hover:translate-x-1">arrow_forward</span>
+              </a>
+
+              <a href="#contacto"
+                class="group inline-flex items-center justify-center gap-2 rounded-full border border-slate-300 bg-white/70 px-8 py-4 text-sm font-bold text-slate-800 backdrop-blur-md transition-colors hover:bg-white hover:border-slate-400 shadow-sm">
+                <span class="material-symbols-outlined text-[18px]">play_arrow</span>
+                Ver Showreel
+              </a>
+            </div>
+          </div>
+
+          <!-- RIGHT COLUMN -->
+          <div class="lg:col-span-5 space-y-6 lg:mt-12">
+
+            <!-- Stats Card -->
+            <div
+              class="animate-fade-in delay-500 relative overflow-hidden rounded-3xl border border-white/60 bg-white/40 p-8 backdrop-blur-2xl shadow-2xl shadow-sky-900/10">
+              <!-- Card Glow Effect -->
+              <div
+                class="absolute top-0 right-0 -mr-16 -mt-16 h-64 w-64 rounded-full bg-sky-300/20 blur-3xl pointer-events-none">
+              </div>
+
+              <div class="relative z-10">
+                <div class="flex items-center gap-4 mb-8">
+                  <div
+                    class="flex h-12 w-12 items-center justify-center rounded-2xl bg-white shadow-sm ring-1 ring-slate-200">
+                    <span class="material-symbols-outlined text-primary"
+                      style="font-variation-settings: 'FILL' 1;">target</span>
+                  </div>
+                  <div>
+                    <div class="text-3xl font-black tracking-tight text-slate-900">150+</div>
+                    <div class="text-sm font-medium text-slate-500">Proyectos Entregados</div>
+                  </div>
+                </div>
+
+                <!-- Progress Bar Section -->
+                <div class="space-y-3 mb-8">
+                  <div class="flex justify-between text-sm">
+                    <span class="text-slate-600 font-medium tracking-tight">Satisfacción del Cliente</span>
+                    <span class="text-slate-900 font-black">98%</span>
+                  </div>
+                  <div class="h-2 w-full overflow-hidden rounded-full bg-slate-200 text-left">
+                    <div class="h-full w-[98%] rounded-full bg-gradient-to-r from-primary to-sky-400 shadow-inner">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="h-px w-full bg-white mb-6"></div>
+
+                <!-- Mini Stats Grid -->
+                <div class="grid grid-cols-3 gap-4 text-center">
+                  <div
+                    class="flex flex-col items-center justify-center transition-transform hover:-translate-y-1 cursor-default">
+                    <span class="text-xl font-black text-slate-900 sm:text-2xl">5+</span>
+                    <span class="text-[10px] uppercase tracking-wider text-slate-500 font-bold sm:text-xs">Años</span>
+                  </div>
+                  <div class="w-px h-full bg-white mx-auto"></div>
+                  <div
+                    class="flex flex-col items-center justify-center transition-transform hover:-translate-y-1 cursor-default">
+                    <span class="text-xl font-black text-slate-900 sm:text-2xl">24/7</span>
+                    <span
+                      class="text-[10px] uppercase tracking-wider text-slate-500 font-bold sm:text-xs">Soporte</span>
+                  </div>
+                  <div class="w-px h-full bg-white mx-auto"></div>
+                  <div
+                    class="flex flex-col items-center justify-center transition-transform hover:-translate-y-1 cursor-default">
+                    <span class="text-xl font-black text-slate-900 sm:text-2xl">100%</span>
+                    <span
+                      class="text-[10px] uppercase tracking-wider text-slate-500 font-bold sm:text-xs">Calidad</span>
+                  </div>
+                </div>
+
+                <!-- Tag Pills -->
+                <div class="mt-8 flex flex-wrap gap-2">
+                  <div
+                    class="inline-flex items-center gap-1.5 rounded-full border border-white/60 bg-white/80 px-3 py-1 text-[10px] font-bold tracking-wide text-slate-600 shadow-sm">
+                    <span class="relative flex h-2 w-2">
+                      <span
+                        class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                      <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                    </span>
+                    ACTIVO
+                  </div>
+                  <div
+                    class="inline-flex items-center gap-1.5 rounded-full border border-white/60 bg-white/80 px-3 py-1 text-[10px] font-bold tracking-wide text-slate-600 shadow-sm">
+                    <span class="material-symbols-outlined text-[12px] text-yellow-500"
+                      style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
+                    PREMIUM
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Marquee Card -->
+            <div
+              class="animate-fade-in delay-500 relative overflow-hidden rounded-3xl border border-white/60 bg-white/40 py-8 backdrop-blur-2xl shadow-xl shadow-sky-900/5">
+              <h3 class="mb-6 px-8 text-sm font-bold text-slate-500">Confiado por Líderes</h3>
+
+              <div class="relative flex overflow-hidden mask-gradient-x"
+                style="-webkit-mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent); mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent);">
+                <div class="animate-marquee flex gap-12 whitespace-nowrap px-4">
+                  <!-- Replicating clients with material design icons -->
+                  <div
+                    class="flex items-center gap-2 opacity-60 transition-all hover:opacity-100 hover:scale-105 cursor-default grayscale hover:grayscale-0">
+                    <span class="material-symbols-outlined text-slate-800">hexagon</span>
+                    <span class="text-lg font-black text-slate-800 tracking-tight">Acme Corp</span>
+                  </div>
+                  <div
+                    class="flex items-center gap-2 opacity-60 transition-all hover:opacity-100 hover:scale-105 cursor-default grayscale hover:grayscale-0">
+                    <span class="material-symbols-outlined text-slate-800">change_history</span>
+                    <span class="text-lg font-black text-slate-800 tracking-tight">Quantum</span>
+                  </div>
+                  <div
+                    class="flex items-center gap-2 opacity-60 transition-all hover:opacity-100 hover:scale-105 cursor-default grayscale hover:grayscale-0">
+                    <span class="material-symbols-outlined text-slate-800">keyboard_command_key</span>
+                    <span class="text-lg font-black text-slate-800 tracking-tight">Command+Z</span>
+                  </div>
+                  <div
+                    class="flex items-center gap-2 opacity-60 transition-all hover:opacity-100 hover:scale-105 cursor-default grayscale hover:grayscale-0">
+                    <span class="material-symbols-outlined text-slate-800">smart_toy</span>
+                    <span class="text-lg font-black text-slate-800 tracking-tight">Phantom</span>
+                  </div>
+                  <div
+                    class="flex items-center gap-2 opacity-60 transition-all hover:opacity-100 hover:scale-105 cursor-default grayscale hover:grayscale-0">
+                    <span class="material-symbols-outlined text-slate-800">diamond</span>
+                    <span class="text-lg font-black text-slate-800 tracking-tight">Ruby</span>
+                  </div>
+                  <div
+                    class="flex items-center gap-2 opacity-60 transition-all hover:opacity-100 hover:scale-105 cursor-default grayscale hover:grayscale-0">
+                    <span class="material-symbols-outlined text-slate-800">memory</span>
+                    <span class="text-lg font-black text-slate-800 tracking-tight">Chipset</span>
+                  </div>
+
+                  <!-- Duplicate for endless scroll -->
+                  <div
+                    class="flex items-center gap-2 opacity-60 transition-all hover:opacity-100 hover:scale-105 cursor-default grayscale hover:grayscale-0">
+                    <span class="material-symbols-outlined text-slate-800">hexagon</span>
+                    <span class="text-lg font-black text-slate-800 tracking-tight">Acme Corp</span>
+                  </div>
+                  <div
+                    class="flex items-center gap-2 opacity-60 transition-all hover:opacity-100 hover:scale-105 cursor-default grayscale hover:grayscale-0">
+                    <span class="material-symbols-outlined text-slate-800">change_history</span>
+                    <span class="text-lg font-black text-slate-800 tracking-tight">Quantum</span>
+                  </div>
+                  <div
+                    class="flex items-center gap-2 opacity-60 transition-all hover:opacity-100 hover:scale-105 cursor-default grayscale hover:grayscale-0">
+                    <span class="material-symbols-outlined text-slate-800">keyboard_command_key</span>
+                    <span class="text-lg font-black text-slate-800 tracking-tight">Command+Z</span>
+                  </div>
+                  <div
+                    class="flex items-center gap-2 opacity-60 transition-all hover:opacity-100 hover:scale-105 cursor-default grayscale hover:grayscale-0">
+                    <span class="material-symbols-outlined text-slate-800">smart_toy</span>
+                    <span class="text-lg font-black text-slate-800 tracking-tight">Phantom</span>
+                  </div>
+                  <div
+                    class="flex items-center gap-2 opacity-60 transition-all hover:opacity-100 hover:scale-105 cursor-default grayscale hover:grayscale-0">
+                    <span class="material-symbols-outlined text-slate-800">diamond</span>
+                    <span class="text-lg font-black text-slate-800 tracking-tight">Ruby</span>
+                  </div>
+                  <div
+                    class="flex items-center gap-2 opacity-60 transition-all hover:opacity-100 hover:scale-105 cursor-default grayscale hover:grayscale-0">
+                    <span class="material-symbols-outlined text-slate-800">memory</span>
+                    <span class="text-lg font-black text-slate-800 tracking-tight">Chipset</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
         </div>
       </div>
-    `;
-    chatMessages.appendChild(div);
-    chatMessages.scrollTop = chatMessages.scrollHeight;
-    return div;
-  }
+    </section>
 
-  const responses = {
-    servicios: '🎨 Ofrecemos: <strong>Diseño Web &amp; UX/UI</strong>, <strong>Branding</strong>, <strong>Inteligencia Artificial</strong> y <strong>SEO &amp; Crecimiento</strong>. ¿Te interesa alguno en particular?',
-    precios: '💰 Nuestros proyectos parten desde <strong>$1.500 USD</strong> dependiendo del alcance. ¡Agenda una llamada gratis para un presupuesto personalizado!',
-    proyecto: '🚀 ¡Genial! Para empezar escríbenos a <strong>hola@enlace.agency</strong> o complete el formulario en nuestra sección de contacto. Te respondemos en menos de 24hs.',
-    contacto: '📬 Puedes contactarnos en:<br/>📧 hola@enlace.agency<br/>📱 +54 11 0000-0000<br/>🌎 Buenos Aires, Argentina',
-    garantia: '✅ Sí, ofrecemos <strong>garantía de satisfacción</strong>. Si el resultado no cumple lo acordado, realizamos revisiones sin costo adicional.',
-    hola: '👋 ¡Hola! ¿En qué puedo ayudarte hoy? Puedo contarte sobre nuestros servicios, precios o cómo empezar un proyecto.',
-    default: '💡 Buena pregunta. Por ahora te recomiendo escribirnos directamente a <strong>hola@enlace.agency</strong> para una consulta personalizada. ¡Respondemos rápido!'
-  };
+    <!-- SERVICIOS -->
+    <section id="servicios" class="relative px-4 py-24">
+      <div class="max-w-6xl mx-auto flex flex-col gap-16">
+        <h2 class="text-3xl md:text-5xl font-black leading-tight tracking-tight text-center max-w-4xl mx-auto">
+          ¿Pensás que el diseño digital es un "gasto innecesario"?
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div
+            class="flex flex-col items-center text-center gap-6 py-20 px-8 rounded-3xl bg-blue-900/20 backdrop-blur-sm border border-blue-200/50 hover:-translate-y-2 transition-transform duration-300 shadow-xl shadow-blue-900/5 h-full">
+            <div class="flex items-center justify-center size-16 rounded-2xl bg-blue-500/10 text-blue-600 mb-2">
+              <span class="material-symbols-outlined text-4xl">palette</span>
+            </div>
+            <h3 class="text-xl font-bold">Branding</h3>
+            <p class="text-slate-600 text-sm leading-relaxed">Centrado en la identidad visual y la percepción de tu
+              marca en el mercado.</p>
+          </div>
+          <div
+            class="flex flex-col items-center text-center gap-6 py-20 px-8 rounded-3xl bg-purple-900/20 backdrop-blur-sm border border-purple-200/50 hover:-translate-y-2 transition-transform duration-300 shadow-xl shadow-purple-900/5 h-full">
+            <div class="flex items-center justify-center size-16 rounded-2xl bg-purple-500/10 text-purple-600 mb-2">
+              <span class="material-symbols-outlined text-4xl">smart_toy</span>
+            </div>
+            <h3 class="text-xl font-bold">Inteligencia ARTIFICIAL</h3>
+            <p class="text-slate-600 text-sm leading-relaxed">Centrado en la eficiencia, automatización de procesos y la
+              innovación continua.</p>
+          </div>
+          <div
+            class="flex flex-col items-center text-center gap-6 py-20 px-8 rounded-3xl bg-emerald-900/20 backdrop-blur-sm border border-emerald-200/50 hover:-translate-y-2 transition-transform duration-300 shadow-xl shadow-emerald-900/5 h-full">
+            <div class="flex items-center justify-center size-16 rounded-2xl bg-emerald-500/10 text-emerald-600 mb-2">
+              <span class="material-symbols-outlined text-4xl">web</span>
+            </div>
+            <h3 class="text-xl font-bold">Páginas Web</h3>
+            <p class="text-slate-600 text-sm leading-relaxed">Centrado en la conversión, usabilidad y una sólida
+              presencia digital 24/7.</p>
+          </div>
+          <div
+            class="flex flex-col items-center text-center gap-6 py-20 px-8 rounded-3xl bg-rose-900/20 backdrop-blur-sm border border-rose-200/50 hover:-translate-y-2 transition-transform duration-300 shadow-xl shadow-rose-900/5 h-full">
+            <div class="flex items-center justify-center size-16 rounded-2xl bg-rose-500/10 text-rose-600 mb-2">
+              <span class="material-symbols-outlined text-4xl">troubleshoot</span>
+            </div>
+            <h3 class="text-xl font-bold">Posicionamiento Virtual</h3>
+            <p class="text-slate-600 text-sm leading-relaxed">Centrado en la visibilidad integral, optimización SEO y
+              estrategias de alcance.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  function getResponse(text) {
-    const lower = text.toLowerCase();
-    if (lower.match(/servicio|hacen|ofrecen|qué hacen/)) return responses.servicios;
-    if (lower.match(/precio|costo|cuánto|presupuesto|tarifa/)) return responses.precios;
-    if (lower.match(/proyecto|empezar|empezamos|quiero|necesito/)) return responses.proyecto;
-    if (lower.match(/contact|email|teléfono|whatsapp|escribir/)) return responses.contacto;
-    if (lower.match(/garantía|seguro|garantizan/)) return responses.garantia;
-    if (lower.match(/hola|hi|buenas|hey/)) return responses.hola;
-    return responses.default;
-  }
+    <!-- PORTFOLIO -->
+    <section id="portfolio" class="px-4 py-32 max-w-6xl mx-auto">
+      <div class="text-center max-w-4xl mx-auto mb-16">
+        <h2 class="text-4xl md:text-5xl font-black leading-tight tracking-tight mb-6">
+          Sudamos la camiseta por tu negocio.
+        </h2>
+        <p class="text-xl text-slate-600 leading-relaxed">
+          Nos dedicamos a entender tu marca y trabajar con vos para lograr un diseño personalizado que impulse tus
+          ventas. No hacemos plantillas, hacemos estrategia visual.
+        </p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="flex flex-col group cursor-pointer">
+          <div
+            class="w-full h-64 rounded-2xl overflow-hidden mb-6 bg-slate-200 shadow-sm group-hover:shadow-md transition-shadow">
+            <img alt="Estudio Jurídico Nova"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 blur-[2px] group-hover:blur-0"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuBliOTaYehT4jSKadshBqDY-1xxCl7AM-ofdQAfZPIEv9uWuYL4W1Ti9TXdUP_mfUj-805P6BaFoTuTptLdsKJKskpbfO5Cf5tFvAghbbxF1-E3ox-Dwwsx5QgbEIf_nKedXujlBbb7Zk9NETBOdoalxdyo2wnj2Ga9TrEkYlMQSJLKHJBU7jp87Y9PsPsvFBvGoxY1OIz39rMOxSYiHkNlr_2rxIlTzv8la6TWMYJHl98p9HTqUItLGfCFpBuJ5cgmspKo9vtqV24M" />
+          </div>
+          <div class="flex justify-between items-start mb-2 gap-4">
+            <h3 class="text-lg font-bold text-slate-900">Estudio Jurídico Nova</h3>
+            <span class="text-xl font-black text-primary whitespace-nowrap">+150% Leads</span>
+          </div>
+          <p class="text-slate-500 text-sm mb-4">Rediseño web y embudo de conversión enfocado en captación local.</p>
+          <div class="flex items-center gap-1 text-primary font-bold text-sm group-hover:gap-2 transition-all mt-auto">
+            Ver Proyecto <span class="material-symbols-outlined text-sm">arrow_forward</span>
+          </div>
+        </div>
+        <div class="flex flex-col group cursor-pointer">
+          <div
+            class="w-full h-64 rounded-2xl overflow-hidden mb-6 bg-slate-200 shadow-sm group-hover:shadow-md transition-shadow">
+            <img alt="Café de Especialidad 8M"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 blur-[2px] group-hover:blur-0"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1KR2vWzmMS1U_PvS493Q6JwPQcgpz-rs4DyM2s_sjgdyCLAmU0Cj0Ej3yW18a4mh5GO1G2Spk9Ig7YKREXK0EzLnrZYruyEJP_s-rPy-0wa_yCYMrsCA3SdV-9F6iZpE5qqiooVgOibFg6plM-LtWwMZMGKgxY6QDk7CDGQTI3kuvSe9U-YG-SDkB6SeHs1J3SBVrFOyGBvfqg9PfNUSe7tUldiG2BiY3LPGTJpweND6Nby-rcf6hRPpf3WBd7xcwlewSxH_UxfVa" />
+          </div>
+          <div class="flex justify-between items-start mb-2 gap-4">
+            <h3 class="text-lg font-bold text-slate-900">Café de Especialidad 8M</h3>
+            <span class="text-xl font-black text-primary whitespace-nowrap">Rebranding Global</span>
+          </div>
+          <p class="text-slate-500 text-sm mb-4">Nueva identidad visual y sistema de diseño para franquicias.</p>
+          <div class="flex items-center gap-1 text-primary font-bold text-sm group-hover:gap-2 transition-all mt-auto">
+            Ver Proyecto <span class="material-symbols-outlined text-sm">arrow_forward</span>
+          </div>
+        </div>
+        <div class="flex flex-col group cursor-pointer">
+          <div
+            class="w-full h-64 rounded-2xl overflow-hidden mb-6 bg-slate-200 shadow-sm group-hover:shadow-md transition-shadow">
+            <img alt="Moda Urbana Store"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 blur-[2px] group-hover:blur-0"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuA4CHKdElfyn4BoVNhY_8e6iwCzS9hqXeS5F3FQaaYNHLOCBqK9uf4vg1wr3LaehrybcD7siTX58b1-15Ny3yLImmiQRtHz_BeFReZaLZxY1yTSg5FPJ1DfV5lGUXzfo3TfGxFoXGnPA9dx08jV0A-KLVpU-7rNLxweBDydVkhkM2Y0Sd2nmveCHmz0sqr-6touCcUSnIyoT5n3j2e_qtLRx6eahpfrTk67MTPsqC9D-8A6gfJ3FBo2u60V0I9w0imcJkbbfMvor8Hh" />
+          </div>
+          <div class="flex justify-between items-start mb-2 gap-4">
+            <h3 class="text-lg font-bold text-slate-900">Moda Urbana Store</h3>
+            <span class="text-xl font-black text-primary whitespace-nowrap">Ventas x3</span>
+          </div>
+          <p class="text-slate-500 text-sm mb-4">Desarrollo de e-commerce a medida con integración de pagos
+            automatizada.</p>
+          <div class="flex items-center gap-1 text-primary font-bold text-sm group-hover:gap-2 transition-all mt-auto">
+            Ver Proyecto <span class="material-symbols-outlined text-sm">arrow_forward</span>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  function sendMessage(text) {
-    if (!text) return;
-    chatInput.value = '';
-    addMessage(text, 'user');
+    <!-- PRECIOS -->
+    <section id="precios" class="px-4 py-20">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-3xl md:text-4xl font-black leading-tight tracking-tight text-center mb-16">
+          ¿Cómo ordenamos tu presencia digital?
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
+          <!-- Plan 1 -->
+          <div
+            class="flex flex-col p-8 rounded-2xl bg-white/60 backdrop-blur-md border border-slate-700 shadow-sm hover:shadow-md transition-shadow">
+            <h3 class="text-xl font-bold mb-2">Pack Identidad Local</h3>
+            <div class="text-3xl font-black mb-6">Desde $X</div>
+            <ul class="flex flex-col gap-4 flex-1 mb-8 text-slate-600">
+              <li class="flex items-center gap-3">
+                <span class="material-symbols-outlined text-primary">check_circle</span>
+                <span>Optimización Google Maps</span>
+              </li>
+              <li class="flex items-center gap-3">
+                <span class="material-symbols-outlined text-primary">check_circle</span>
+                <span>Diseño de Logo Básico</span>
+              </li>
+              <li class="flex items-center gap-3">
+                <span class="material-symbols-outlined text-primary">check_circle</span>
+                <span>Paleta de Colores</span>
+              </li>
+            </ul>
+            <button
+              class="w-full py-3 rounded-lg border-2 border-primary text-primary font-bold hover:bg-primary hover:text-white transition-colors">
+              Quiero el Pack Identidad
+            </button>
+          </div>
 
-    // Hide quick replies after first send
-    quickRepliesEl.style.display = 'none';
+          <!-- Plan 2 (mas popular) -->
+          <div
+            class="flex flex-col p-8 rounded-2xl bg-white/60 backdrop-blur-md border-2 border-primary shadow-xl relative md:-translate-y-4">
+            <div
+              class="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary text-white px-4 py-1 rounded-full text-sm font-bold whitespace-nowrap">
+              El más elegido
+            </div>
+            <h3 class="text-xl font-bold mb-2">Pack Crecimiento Digital</h3>
+            <div class="text-3xl font-black mb-6">Desde $X</div>
+            <ul class="flex flex-col gap-4 flex-1 mb-8 text-slate-600">
+              <li class="flex items-center gap-3">
+                <span class="material-symbols-outlined text-primary">check_circle</span>
+                <span>Todo lo del Pack Local</span>
+              </li>
+              <li class="flex items-center gap-3">
+                <span class="material-symbols-outlined text-primary">check_circle</span>
+                <span>Diseño Web Landing Page</span>
+              </li>
+              <li class="flex items-center gap-3">
+                <span class="material-symbols-outlined text-primary">check_circle</span>
+                <span>Plantillas para Instagram</span>
+              </li>
+              <li class="flex items-center gap-3">
+                <span class="material-symbols-outlined text-primary">check_circle</span>
+                <span>Copywriting Básico</span>
+              </li>
+            </ul>
+            <button
+              class="w-full py-3 rounded-lg bg-primary text-white font-bold hover:bg-primary/90 transition-colors shadow-md shadow-primary/30">
+              Quiero el Pack Crecimiento
+            </button>
+          </div>
 
-    const typing = showTyping();
-    setTimeout(() => {
-      typing.remove();
-      addMessage(getResponse(text), 'bot');
-    }, 900 + Math.random() * 600);
-  }
-</script>
+          <!-- Plan 3 -->
+          <div
+            class="flex flex-col p-8 rounded-2xl bg-white/60 backdrop-blur-md border border-slate-700 shadow-sm hover:shadow-md transition-shadow">
+            <h3 class="text-xl font-bold mb-2">Pack Agencia Integral</h3>
+            <div class="text-3xl font-black mb-6">Desde $X</div>
+            <ul class="flex flex-col gap-4 flex-1 mb-8 text-slate-600">
+              <li class="flex items-center gap-3">
+                <span class="material-symbols-outlined text-primary">check_circle</span>
+                <span>Todo lo del Pack Crecimiento</span>
+              </li>
+              <li class="flex items-center gap-3">
+                <span class="material-symbols-outlined text-primary">check_circle</span>
+                <span>E-commerce Completo</span>
+              </li>
+              <li class="flex items-center gap-3">
+                <span class="material-symbols-outlined text-primary">check_circle</span>
+                <span>Gestión de Pauta (Ads)</span>
+              </li>
+              <li class="flex items-center gap-3">
+                <span class="material-symbols-outlined text-primary">check_circle</span>
+                <span>Soporte Prioritario</span>
+              </li>
+            </ul>
+            <button
+              class="w-full py-3 rounded-lg border-2 border-primary text-primary font-bold hover:bg-primary hover:text-white transition-colors">
+              Quiero el Pack Integral
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
 
+    <!-- NOSOTROS -->
+    <section id="nosotros" class="px-4 py-24">
+      <div class="max-w-6xl mx-auto">
+        <!-- Full-width team photo -->
+        <div class="w-full rounded-2xl overflow-hidden mb-20 relative" style="height: 360px;">
+          <img
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBliOTaYehT4jSKadshBqDY-1xxCl7AM-ofdQAfZPIEv9uWuYL4W1Ti9TXdUP_mfUj-805P6BaFoTuTptLdsKJKskpbfO5Cf5tFvAghbbxF1-E3ox-Dwwsx5QgbEIf_nKedXujlBbb7Zk9NETBOdoalxdyo2wnj2Ga9TrEkYlMQSJLKHJBU7jp87Y9PsPsvFBvGoxY1OIz39rMOxSYiHkNlr_2rxIlTzv8la6TWMYJHl98p9HTqUItLGfCFpBuJ5cgmspKo9vtqV24M"
+            alt="Equipo Enlace" class="w-full h-full object-cover" />
+          <div class="absolute inset-0 bg-white/70 flex items-center justify-center">
+            <h2 class="text-slate-900 text-4xl md:text-6xl font-black text-center leading-tight">Sudamos la camiseta por
+              tu
+              marca.</h2>
+          </div>
+        </div>
+
+        <!-- Philosophy -->
+        <div class="text-center max-w-3xl mx-auto mb-20">
+          <p class="text-primary font-bold text-sm tracking-widest uppercase mb-4">NUESTRA FILOSOFÍA</p>
+          <h2 class="text-4xl font-black mb-6">Enlace significa conectar.</h2>
+          <p class="text-slate-600 text-lg leading-relaxed">
+            Creemos en el poder de conectar marcas con su audiencia a través del diseño innovador y la tecnología de
+            vanguardia. Nuestro equipo se sumerge en tu visión, sudando la camiseta para construir experiencias
+            digitales que resuenan y perduran. Hacemos el trabajo duro para que tu marca brille.
+          </p>
+        </div>
+
+        <!-- Team -->
+        <div class="mb-20">
+          <h2 class="text-3xl md:text-4xl font-black text-center mb-4">Nuestro Equipo</h2>
+          <p class="text-slate-500 text-center mb-12">Los talentos detrás de las ideas.</p>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div class="flex flex-col items-center text-left">
+              <div class="w-full aspect-square rounded-2xl overflow-hidden mb-4 bg-slate-200">
+                <img
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1KR2vWzmMS1U_PvS493Q6JwPQcgpz-rs4DyM2s_sjgdyCLAmU0Cj0Ej3yW18a4mh5GO1G2Spk9Ig7YKREXK0EzLnrZYruyEJP_s-rPy-0wa_yCYMrsCA3SdV-9F6iZpE5qqiooVgOibFg6plM-LtWwMZMGKgxY6QDk7CDGQTI3kuvSe9U-YG-SDkB6SeHs1J3SBVrFOyGBvfqg9PfNUSe7tUldiG2BiY3LPGTJpweND6Nby-rcf6hRPpf3WBd7xcwlewSxH_UxfVa"
+                  alt="Laura Gómez" class="w-full h-full object-cover" />
+              </div>
+              <h4 class="font-bold text-slate-900">Laura Gómez</h4>
+              <p class="text-primary text-sm font-medium">Directora Creativa</p>
+            </div>
+            <div class="flex flex-col items-center text-left">
+              <div class="w-full aspect-square rounded-2xl overflow-hidden mb-4 bg-slate-200">
+                <img
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuBoirfhErAVKJcK2GWxXOvhzAu3zVHgIcXgTB-Mvx7ROritKqxDAD7dWlXf64uMvANPqNKl6VmrQVW-3Jsqz83nsoy-4Zbj6-wiFVM7hwXru3mwe-4RJ7250Z6J4UuQrHD5GltddcFPoIXeEKERbstkt-6iz2au8KtoKYf0L46fddIYtFwMcrpUkLr5dkOuHRQEoQpKrejZ4Qtv0W6WHWWhg5m2EU5KhXFj6Du8ZhPc1BBnb8MpPdEU1gW_xyitJYZnl5A9DTjNMs2E"
+                  alt="Carlos Ruiz" class="w-full h-full object-cover" />
+              </div>
+              <h4 class="font-bold text-slate-900">Carlos Ruiz</h4>
+              <p class="text-primary text-sm font-medium">Tech Lead</p>
+            </div>
+            <div class="flex flex-col items-center text-left">
+              <div class="w-full aspect-square rounded-2xl overflow-hidden mb-4 bg-slate-200">
+                <img
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuA4CHKdElfyn4BoVNhY_8e6iwCzS9hqXeS5F3FQaaYNHLOCBqK9uf4vg1wr3LaehrybcD7siTX58b1-15Ny3yLImmiQRtHz_BeFReZaLZxY1yTSg5FPJ1DfV5lGUXzfo3TfGxFoXGnPA9dx08jV0A-KLVpU-7rNLxweBDydVkhkM2Y0Sd2nmveCHmz0sqr-6touCcUSnIyoT5n3j2e_qtLRx6eahpfrTk67MTPsqC9D-8A6gfJ3FBo2u60V0I9w0imcJkbbfMvor8Hh"
+                  alt="Ana Martínez" class="w-full h-full object-cover" />
+              </div>
+              <h4 class="font-bold text-slate-900">Ana Martínez</h4>
+              <p class="text-primary text-sm font-medium">UX/UI Designer</p>
+            </div>
+            <div class="flex flex-col items-center text-left">
+              <div
+                class="w-full aspect-square rounded-2xl overflow-hidden mb-4 bg-slate-200 flex items-center justify-center">
+                <div class="text-center p-4">
+                  <p class="text-slate-500 text-xs">Estratega Digital</p>
+                </div>
+              </div>
+              <h4 class="font-bold text-slate-900">David Silva</h4>
+              <p class="text-primary text-sm font-medium">Estratega Digital</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Values -->
+        <div>
+          <h2 class="text-3xl md:text-4xl font-black text-center mb-12">Nuestros Valores</h2>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
+            <div class="flex flex-col items-center gap-4">
+              <div class="flex items-center justify-center size-16 rounded-full bg-blue-100 text-primary">
+                <span class="material-symbols-outlined text-3xl">local_fire_department</span>
+              </div>
+              <h4 class="text-xl font-bold">Dedicación</h4>
+              <p class="text-slate-600 text-sm leading-relaxed">Nos involucramos al 100% en cada proyecto, tratando tu
+                marca como si fuera la nuestra.</p>
+            </div>
+            <div class="flex flex-col items-center gap-4">
+              <div class="flex items-center justify-center size-16 rounded-full bg-blue-100 text-primary">
+                <span class="material-symbols-outlined text-3xl">lightbulb</span>
+              </div>
+              <h4 class="text-xl font-bold">Innovación</h4>
+              <p class="text-slate-600 text-sm leading-relaxed">Buscamos constantemente nuevas formas de resolver
+                problemas y destacar en el mundo digital.</p>
+            </div>
+            <div class="flex flex-col items-center gap-4">
+              <div class="flex items-center justify-center size-16 rounded-full bg-blue-100 text-primary">
+                <span class="material-symbols-outlined text-3xl">visibility</span>
+              </div>
+              <h4 class="text-xl font-bold">Transparencia</h4>
+              <p class="text-slate-600 text-sm leading-relaxed">Comunicación clara y honesta en cada etapa del proceso,
+                construyendo relaciones de confianza.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACTO / FOOTER CTA -->
+    <section id="contacto">
+      <footer class="bg-transparent text-slate-900 py-20 px-4">
+        <div class="max-w-4xl mx-auto text-center flex flex-col items-center gap-8">
+          <h2 class="text-3xl md:text-5xl font-black leading-tight">
+            Dejá de perder ventas por culpa del caos digital.
+          </h2>
+          <p class="text-lg text-slate-500 max-w-2xl">
+            Da el primer paso hoy. Analizamos tu presencia actual y te decimos exactamente qué tenés que mejorar para
+            empezar a convertir visitas en clientes.
+          </p>
+          <a href="https://wa.me/+"
+            class="flex cursor-pointer items-center justify-center rounded-lg h-14 px-8 bg-primary hover:bg-primary/90 text-white text-lg font-bold transition-colors">
+            Solicitar mi Auditoría Gratuita
+          </a>
+          <div class="w-full h-px bg-slate-800 my-4"></div>
+          <div class="flex flex-col md:flex-row justify-between w-full items-center text-slate-500 text-sm gap-4">
+            <div class="flex items-center gap-2">
+              <div class="size-5 text-primary">
+                <svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M8.57829 8.57829C5.52816 11.6284 3.451 15.5145 2.60947 19.7452C1.76794 23.9758 2.19984 28.361 3.85056 32.3462C5.50128 36.3314 8.29667 39.7376 11.8832 42.134C15.4698 44.5305 19.6865 45.8096 24 45.8096C28.3135 45.8096 32.5302 44.5305 36.1168 42.134C39.7033 39.7375 42.4987 36.3314 44.1494 32.3462C45.8002 28.361 46.2321 23.9758 45.3905 19.7452C44.549 15.5145 42.4718 11.6284 39.4217 8.57829L24 24L8.57829 8.57829Z"
+                    fill="currentColor"></path>
+                </svg>
+              </div>
+              <span class="font-bold text-slate-600">Enlace Agencia Digital</span>
+            </div>
+            <div class="flex gap-6">
+              <a href="#" class="hover:text-slate-900 transition-colors">Privacidad</a>
+              <a href="#" class="hover:text-slate-900 transition-colors">Términos</a>
+              <a href="#" class="hover:text-slate-900 transition-colors">LinkedIn</a>
+            </div>
+            <p>© 2024 Enlace. Todos los derechos reservados.</p>
+          </div>
+        </div>
+      </footer>
+    </section>
+
+  </main>
+
+  <!-- Chatbot flotante -->
+  <div class="fixed bottom-6 right-6 z-50 group flex flex-col items-end">
+    <div
+      class="absolute -top-12 right-0 bg-white text-primary text-sm font-bold px-4 py-2 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-lg">
+      ¿Hablamos?
+      <div class="absolute -bottom-1.5 right-6 size-3 bg-white rotate-45 rounded-sm"></div>
+    </div>
+    <button id="chatToggle"
+      class="flex items-center justify-center size-14 rounded-full bg-primary text-white shadow-xl shadow-primary/40 hover:scale-105 hover:bg-primary/90 transition-all cursor-pointer"
+      aria-label="Abrir chat">
+      <span class="material-symbols-outlined text-2xl">chat</span>
+    </button>
+  </div>
+
+  <!-- Chat popup -->
+  <div id="chatBox"
+    class="hidden fixed bottom-24 right-6 z-50 w-80 bg-white/60 backdrop-blur-md rounded-2xl shadow-2xl border border-slate-100 overflow-hidden">
+    <div class="bg-primary p-4 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 bg-white/60 backdrop-blur-md/20 rounded-full flex items-center justify-center">
+          <span class="material-symbols-outlined text-primary text-lg">smart_toy</span>
+        </div>
+        <div>
+          <p class="text-white font-semibold text-sm">Enlace Assistant</p>
+          <p class="text-white/70 text-xs">● Online ahora</p>
+        </div>
+      </div>
+      <button id="closeChat" class="text-white/70 hover:text-white" aria-label="Cerrar chat">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+    </div>
+    <div id="chatMessages" class="p-4 h-56 overflow-y-auto space-y-3 bg-white/80 backdrop-blur-md">
+      <div class="flex gap-2">
+        <div
+          class="w-7 h-7 bg-primary rounded-full flex items-center justify-center text-white text-xs flex-shrink-0">
+          <span class="material-symbols-outlined text-sm">smart_toy</span>
+        </div>
+        <div
+          class="bg-white/60 backdrop-blur-md rounded-xl rounded-tl-none px-3 py-2 text-sm text-slate-900 shadow-sm max-w-[85%]">
+          ¡Hola! Soy el asistente de Enlace. ¿En qué puedo ayudarte hoy? 👋
+        </div>
+      </div>
+    </div>
+    <div class="p-3 border-t border-slate-100 bg-white/60 backdrop-blur-md flex gap-2">
+      <input id="chatInput" type="text" placeholder="Escribí tu pregunta..."
+        class="flex-1 text-sm px-3 py-2 rounded-lg border border-slate-700 bg-slate-800 text-slate-900 focus:outline-none focus:border-primary" />
+      <button id="chatSend"
+        class="bg-primary text-white px-3 py-2 rounded-lg text-sm font-bold hover:bg-primary/90 transition-colors">→</button>
+    </div>
+  </div>
+
+  <script src="main.js"></script>
+  <script>
+    // Slider
+    const slider = document.getElementById('heroSlider');
+    const dots = document.querySelectorAll('.slide-dot');
+    let currentSlide = 0;
+
+    function goToSlide(index) {
+      currentSlide = index;
+      slider.scrollTo({ left: slider.offsetWidth * index, behavior: 'smooth' });
+      dots.forEach((d, i) => d.classList.toggle('active', i === index));
+    }
+
+    dots.forEach((dot, i) => dot.addEventListener('click', () => goToSlide(i)));
+
+    setInterval(() => {
+      goToSlide((currentSlide + 1) % 3);
+    }, 5000);
+
+    // Mobile menu
+    document.getElementById('menuBtn')?.addEventListener('click', () => {
+      document.getElementById('mobileMenu')?.classList.toggle('hidden');
+    });
+
+    // Chatbot
+    const chatToggle = document.getElementById('chatToggle');
+    const chatBox = document.getElementById('chatBox');
+    const closeChat = document.getElementById('closeChat');
+    const chatSend = document.getElementById('chatSend');
+    const chatInput = document.getElementById('chatInput');
+    const chatMessages = document.getElementById('chatMessages');
+
+    chatToggle?.addEventListener('click', () => chatBox?.classList.toggle('hidden'));
+    closeChat?.addEventListener('click', () => chatBox?.classList.add('hidden'));
+
+    function addMessage(text, isUser) {
+      const div = document.createElement('div');
+      div.className = 'flex gap-2' + (isUser ? ' justify-end' : '');
+      div.innerHTML = isUser
+        ? `<div class="bg-primary text-white rounded-xl rounded-tr-none px-3 py-2 text-sm max-w-[85%]">${text}</div>`
+        : `<div class="w-7 h-7 bg-primary rounded-full flex items-center justify-center text-white text-xs flex-shrink-0"><span class="material-symbols-outlined text-sm">smart_toy</span></div><div class="bg-white/60 backdrop-blur-md rounded-xl rounded-tl-none px-3 py-2 text-sm text-slate-900 shadow-sm max-w-[85%]">${text}</div>`;
+      chatMessages?.appendChild(div);
+      if (chatMessages) chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    function getBotReply(msg) {
+      const m = msg.toLowerCase();
+      if (m.includes('precio') || m.includes('costo') || m.includes('plan')) return '¡Tenemos 3 planes! Pack Identidad, Pack Crecimiento y Pack Agencia Integral. Mirá la sección de Precios para más detalles.';
+      if (m.includes('servicio')) return 'Ofrecemos Branding, Inteligencia Artificial, Páginas Web y Posicionamiento. ¿Te interesa alguno en particular?';
+      if (m.includes('contacto') || m.includes('hablar') || m.includes('whatsapp')) return 'Podés contactarnos por WhatsApp desde el botón de arriba o completando nuestro formulario. ¡Respondemos en menos de 24hs!';
+      return 'Eso es una buena pregunta. Te recomendamos solicitar tu auditoría gratuita para que uno de nuestros estrategas te contacte personalmente. 🚀';
+    }
+
+    chatSend?.addEventListener('click', () => {
+      const text = chatInput?.value.trim();
+      if (!text) return;
+      addMessage(text, true);
+      if (chatInput) chatInput.value = '';
+      setTimeout(() => addMessage(getBotReply(text), false), 800);
+    });
+
+    chatInput?.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') chatSend?.click();
+    });
+  </script>
+  <script src="navbar.js"></script>
+  <!-- Three.js CDN -->
+
+
+
+  <script src="infinite-grid.js"></script>
 </body>
+
 </html>
