@@ -2,7 +2,8 @@
 
 import * as React from "react"
 import { cn } from "@/lib/utils"
-import { ChevronDown, Menu, X, ArrowRight } from "lucide-react"
+import { ChevronDown, Menu, X, ArrowRight, Cpu, Globe, Eye, Search, Palette, LineChart, FileText } from "lucide-react"
+import MegaMenu, { MegaMenuItem } from "@/components/ui/mega-menu"
 
 const LOGO_SVG = (
   <img 
@@ -21,6 +22,87 @@ const NAV_LINKS = [
   { href: "contacto.html", label: "Contacto" },
 ]
 
+const NAV_ITEMS: MegaMenuItem[] = [
+  {
+    id: 1,
+    label: "Servicios",
+    subMenus: [
+      {
+        title: "Identidad",
+        items: [
+          {
+            label: "Branding",
+            description: "Construimos marcas",
+            icon: Palette,
+            link: "servicio-branding.html",
+          },
+          {
+            label: "Diseño Visual",
+            description: "Interfaces y UX",
+            icon: Eye,
+            link: "servicio-branding.html",
+          },
+        ],
+      },
+      {
+        title: "Web & IA",
+        items: [
+          {
+            label: "Páginas Web",
+            description: "Desarrollo a medida",
+            icon: Globe,
+            link: "servicio-web.html",
+          },
+          {
+            label: "Inteligencia Artificial",
+            description: "Automatización",
+            icon: Cpu,
+            link: "servicio-ia.html",
+          },
+        ],
+      },
+      {
+        title: "Crecimiento",
+        items: [
+          {
+            label: "Posicionamiento SEO",
+            description: "Llega a los primeros lugares",
+            icon: Search,
+            link: "servicio-posicionamiento.html",
+          },
+          {
+            label: "Estrategia Digital",
+            description: "Marketing y datos",
+            icon: LineChart,
+            link: "servicio-posicionamiento.html",
+          },
+        ],
+      },
+    ],
+  },
+  { id: 2, label: "Portafolio", link: "portfolio.html" },
+  { id: 3, label: "Precios", link: "index.html#precios" },
+  { id: 4, label: "Nosotros", link: "nosotros.html" },
+  {
+    id: 5,
+    label: "Blog",
+    subMenus: [
+      {
+        title: "Últimas entradas",
+        items: [
+          {
+            label: "El Futuro de la IA en 2024",
+            description: "Cómo la IA transformará los negocios",
+            icon: FileText,
+            link: "blog.html",
+          },
+        ],
+      },
+    ],
+  },
+  { id: 6, label: "Contacto", link: "contacto.html" },
+]
+
 export function Navbar() {
   const [isOpen, setIsOpen] = React.useState(false)
   const [activeDropdown, setActiveDropdown] = React.useState<string | null>(null)
@@ -34,55 +116,8 @@ export function Navbar() {
         </a>
 
         {/* Desktop Navigation */}
-        <div className="hidden items-center gap-1 md:flex">
-          {NAV_LINKS.map((link) => (
-            <div
-              key={link.label}
-              className="relative group"
-              onMouseEnter={() => link.dropdown && setActiveDropdown(link.label)}
-              onMouseLeave={() => setActiveDropdown(null)}
-            >
-              <a
-                href={link.href}
-                className={cn(
-                  "flex items-center gap-1 rounded-full px-4 py-2 text-sm font-medium transition-colors",
-                  "text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-zinc-50"
-                )}
-              >
-                {link.label}
-                {link.dropdown && <ChevronDown className="h-4 w-4 transition-transform group-hover:rotate-180" />}
-              </a>
-
-              {/* Shifting Dropdown Logic (Simplified for now) */}
-              {link.dropdown && activeDropdown === link.label && (
-                <div className="absolute left-1/2 top-full mt-2 w-64 -translate-x-1/2 rounded-2xl border border-zinc-200 bg-white p-4 shadow-xl dark:border-zinc-800 dark:bg-zinc-900">
-                  {link.label === "Servicios" ? (
-                    <div className="grid gap-4">
-                      <div className="space-y-2">
-                        <p className="text-[10px] font-bold uppercase tracking-widest text-zinc-400">Identidad</p>
-                        <a href="servicio-branding.html" className="block text-sm font-medium text-zinc-600 hover:text-primary">Branding</a>
-                      </div>
-                      <div className="space-y-2">
-                        <p className="text-[10px] font-bold uppercase tracking-widest text-zinc-400">Web & IA</p>
-                        <a href="servicio-web.html" className="block text-sm font-medium text-zinc-600 hover:text-primary">Páginas Web</a>
-                        <a href="servicio-ia.html" className="block text-sm font-medium text-zinc-600 hover:text-primary">IA Solutions</a>
-                      </div>
-                    </div>
-                  ) : (
-                    <div className="space-y-4">
-                      <p className="text-[10px] font-bold uppercase tracking-widest text-zinc-400">Últimas entradas</p>
-                      <a href="blog.html" className="block text-sm font-medium text-zinc-600 hover:text-primary underline decoration-zinc-200 underline-offset-4">
-                        El Futuro de la IA en 2024
-                      </a>
-                    </div>
-                  )}
-                  <a href="contacto.html" className="mt-4 flex items-center gap-2 border-t pt-4 text-xs font-bold text-primary group/more">
-                    Ver más <ArrowRight className="h-3 w-3 transition-transform group-hover/more:translate-x-1" />
-                  </a>
-                </div>
-              )}
-            </div>
-          ))}
+        <div className="hidden items-center md:flex">
+          <MegaMenu items={NAV_ITEMS} />
         </div>
 
         {/* CTA */}
