@@ -2,6 +2,7 @@
   "name": "enlace-digital",
   "private": true,
   "version": "0.0.0",
+  "engines": { "node": ">=18" },
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -20,7 +21,7 @@
     "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
-    "@types/node": "^25.5.0",
+    "@types/node": "^18.0.0",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.3.1",
