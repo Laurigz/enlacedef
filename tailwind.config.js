@@ -1,12 +1,13 @@
+import defaultTheme from "tailwindcss/defaultTheme"
+import animate from "tailwindcss-animate"
+
 /** @type {import('tailwindcss').Config} */
 export default {
   darkMode: ["class"],
   content: [
-    './pages/**/*.{ts,tsx}',
     './components/**/*.{ts,tsx}',
-    './app/**/*.{ts,tsx}',
-    './src/**/*.{ts,tsx}',
-    './index.html',
+    './lib/**/*.{ts,tsx}',
+    './*.html',
     './*.{js,ts,jsx,tsx}',
   ],
   prefix: "",
@@ -19,6 +20,9 @@ export default {
       },
     },
     extend: {
+      fontFamily: {
+        sans: ["Inter", ...defaultTheme.fontFamily.sans],
+      },
       colors: {
         "app-border": "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -75,5 +79,5 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [animate],
 }

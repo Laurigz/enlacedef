@@ -1,289 +1,199 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es-AR">
 
 <head>
     <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Posicionamiento Virtual | Enlace Agencia Digital</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Posicionamiento SEO | Enlace Agencia Digital</title>
     <meta name="description"
-        content="Estrategias SEO y SEM de alto impacto para posicionar tu marca en la cima de los resultados de búsqueda y convertir tráfico en ingresos reales." />
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap"
-        rel="stylesheet" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap"
-        rel="stylesheet" />
-    <script>
-        tailwind.config = {
-            theme: { extend: { colors: { "primary": "#0034d3" }, fontFamily: { "display": ["Inter", "sans-serif"] } } }
-        }
-    </script>
-    <style>
-        * {
-            font-family: 'Inter', sans-serif;
-        }
-
-        .glass {
-            background: rgba(255, 255, 255, 0.65);
-            backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
-            border: 1px solid rgba(255, 255, 255, 0.4);
-        }
-
-        @keyframes fadeUp {
-            from {
-                opacity: 0;
-                transform: translateY(24px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .anim {
-            animation: fadeUp .7s ease-out forwards;
-            opacity: 0;
-        }
-
-        .d1 {
-            animation-delay: .1s
-        }
-
-        .d2 {
-            animation-delay: .2s
-        }
-
-        .d3 {
-            animation-delay: .3s
-        }
-
-        .d4 {
-            animation-delay: .4s
-        }
-
-        .d5 {
-            animation-delay: .5s
-        }
-    </style>
+        content="SEO, SEO local en Google Maps y campañas en Google Ads para que tu negocio aparezca cuando te buscan y convierta ese tráfico en clientes." />
+    <meta name="theme-color" content="#0034d3" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_AR" />
+    <meta property="og:site_name" content="Enlace Agencia Digital" />
+    <meta property="og:title" content="Posicionamiento SEO | Enlace Agencia Digital" />
+    <meta property="og:description" content="SEO, SEO local en Google Maps y campañas en Google Ads para que tu negocio aparezca cuando te buscan y convierta ese tráfico en clientes." />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <!-- Íconos Material Symbols: solo se descargan los de icon_names (en orden alfabético, ~10 KB en vez de 4 MB).
+         Si usás un ícono nuevo en alguna página, agregalo a esta lista en todas las páginas. -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0..1,0&icon_names=architecture,article,bolt,brush,cancel,chat,check_circle,draw,edit_note,expand_more,format_size,forum,insights,lightbulb,local_fire_department,location_on,mail,menu_book,palette,precision_manufacturing,psychology,query_stats,refresh,rocket_launch,schedule,search,send,smartphone,support_agent,terminal,trending_up,verified_user,visibility&display=block" rel="stylesheet" />
 </head>
 
-<body class="bg-transparent text-slate-900 min-h-screen flex flex-col overflow-x-hidden antialiased">
-    <!-- Gradient Background Blobs -->
-    <div style="position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none;background:linear-gradient(60deg,#f0f4ff 0%,#f8faff 50%,#f5f0ff 100%)">
-      <div style="position:absolute;top:-5%;left:-8%;width:45%;height:45%;border-radius:50%;background:#0034d3;filter:blur(140px);opacity:0.12"></div>
-      <div style="position:absolute;top:15%;right:-5%;width:35%;height:35%;border-radius:50%;background:#99ccff;filter:blur(120px);opacity:0.25"></div>
-      <div style="position:absolute;top:50%;left:-5%;width:30%;height:30%;border-radius:50%;background:#003087;filter:blur(130px);opacity:0.08"></div>
-      <div style="position:absolute;top:60%;right:10%;width:40%;height:40%;border-radius:50%;background:#0034d3;filter:blur(150px);opacity:0.10"></div>
-      <div style="position:absolute;bottom:-10%;left:15%;width:55%;height:40%;border-radius:50%;background:linear-gradient(50deg,#0034d3,#99ccff);filter:blur(140px);opacity:0.12"></div>
-    </div>
-    <div id="site-nav"></div>
-    <main class="flex-1 max-w-6xl mx-auto px-6 lg:px-20 py-12 space-y-24">
+<body class="flex min-h-screen flex-col overflow-x-hidden text-slate-900">
+    <header id="site-nav" class="site-header"></header>
+
+    <main class="mx-auto w-full max-w-6xl flex-1 space-y-24 px-6 py-12 lg:px-20">
         <!-- HERO -->
-        <section class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center pt-12">
+        <section class="grid grid-cols-1 items-center gap-12 pt-4 lg:grid-cols-2 lg:pt-12">
             <div class="space-y-6">
-                <div
-                    class="anim d1 inline-block px-4 py-2 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider border border-primary/15">
-                    Marketing de Resultados</div>
-                <h1
-                    class="anim d2 text-slate-900 text-4xl sm:text-5xl lg:text-6xl font-black leading-[1.08] tracking-tighter">
-                    Dominá el <span class="bg-gradient-to-r from-primary to-sky-500 bg-clip-text text-transparent">Mundo
-                        Digital</span>
+                <p class="fade-up fade-up-1 inline-block rounded-full border border-primary/15 bg-primary/10 px-4 py-2 text-xs font-bold uppercase tracking-wider text-primary">
+                    Posicionamiento SEO</p>
+                <h1 class="fade-up fade-up-2 text-4xl font-black leading-[1.08] tracking-tighter text-slate-900 sm:text-5xl lg:text-6xl">
+                    Que te encuentren
+                    <span class="bg-gradient-to-r from-primary to-sky-500 bg-clip-text text-transparent">cuando te buscan</span>
                 </h1>
-                <p class="anim d3 text-slate-500 text-lg lg:text-xl leading-relaxed max-w-xl">Estrategias SEO y SEM de
-                    alto impacto diseñadas para posicionar tu marca en la cima de los resultados de búsqueda y convertir
-                    tráfico en ingresos reales.</p>
-                <div class="anim d4 flex flex-col sm:flex-row gap-4">
-                    <a href="contacto.html"
-                        class="text-center bg-primary text-white px-8 py-4 rounded-xl font-bold hover:bg-primary/90 hover:shadow-lg hover:shadow-primary/20 transition-all">Impulsá
-                        tu Tráfico</a>
-                    <a href="portfolio.html"
-                        class="text-center border-2 border-slate-200 text-slate-900 px-8 py-4 rounded-xl font-bold hover:bg-slate-50 transition-colors">Ver
-                        Resultados</a>
+                <p class="fade-up fade-up-3 max-w-xl text-lg leading-relaxed text-slate-600 lg:text-xl">
+                    Trabajamos tu web, tu perfil de Google Maps y tus campañas para que aparezcas arriba en Google y
+                    ese tráfico se convierta en consultas.</p>
+                <div class="fade-up fade-up-4 flex flex-col gap-4 sm:flex-row">
+                    <a href="/contacto.html" data-wa="Hola, quiero mejorar cómo aparece mi negocio en Google."
+                        class="rounded-xl bg-primary px-8 py-4 text-center font-bold text-white transition-all hover:bg-primary/90 hover:shadow-lg hover:shadow-primary/20">
+                        Impulsá tu tráfico</a>
+                    <a href="#metricas"
+                        class="rounded-xl border-2 border-slate-200 bg-white/60 px-8 py-4 text-center font-bold text-slate-900 transition-colors hover:bg-white">
+                        Qué medimos</a>
                 </div>
             </div>
-            <div class="anim d5 relative group">
-                <div
-                    class="absolute -inset-4 bg-primary/15 rounded-2xl blur-2xl opacity-50 group-hover:opacity-70 transition duration-1000">
-                </div>
-                <div
-                    class="relative w-full aspect-video bg-cover bg-center rounded-2xl shadow-2xl border border-slate-200 overflow-hidden">
-                    <img class="w-full h-full object-cover"
-                        src="https://images.unsplash.com/photo-1432888622747-4eb9a8efeb07?w=700&q=80"
-                        alt="Dashboard de analítica mostrando métricas de crecimiento" />
+            <div class="fade-up fade-up-5 group relative">
+                <div class="absolute -inset-4 rounded-2xl bg-primary/15 opacity-50 blur-2xl transition duration-1000 group-hover:opacity-70"></div>
+                <div class="relative aspect-video w-full overflow-hidden rounded-2xl border border-slate-200 shadow-2xl">
+                    <img class="h-full w-full object-cover" width="700" height="394" fetchpriority="high"
+                        src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=700&q=75&auto=format"
+                        alt="Panel de analítica web con gráficos de tráfico" />
                     <div class="absolute inset-0 bg-gradient-to-tr from-primary/20 to-transparent"></div>
                 </div>
             </div>
         </section>
+
         <!-- SERVICIOS -->
         <section class="space-y-10">
-            <div class="text-center space-y-3 max-w-3xl mx-auto">
-                <h2 class="text-slate-900 text-3xl font-black">Servicios de Visibilidad de Alto Impacto</h2>
-                <p class="text-slate-500">Soluciones integrales de posicionamiento orgánico y de pago para un
-                    crecimiento sostenible.</p>
+            <div class="mx-auto max-w-3xl space-y-3 text-center">
+                <h2 class="text-3xl font-black text-slate-900">Qué hacemos</h2>
+                <p class="text-slate-600">Posicionamiento orgánico y pago para crecer de forma sostenida.</p>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
-                <div
-                    class="flex flex-col gap-4 rounded-2xl border border-slate-200 bg-white p-6 hover:border-primary/50 transition-colors group">
-                    <div
-                        class="size-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors">
-                        <span class="material-symbols-outlined text-3xl">search</span></div>
+            <div class="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-4">
+                <div class="group flex flex-col gap-4 rounded-2xl border border-slate-200 bg-white p-6 transition-colors hover:border-primary/50">
+                    <span class="flex size-12 items-center justify-center rounded-xl bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-white">
+                        <span class="material-symbols-outlined text-3xl" aria-hidden="true">search</span></span>
                     <div>
-                        <h3 class="text-xl font-bold mb-1">SEO On/Off-page</h3>
-                        <p class="text-slate-500 text-sm leading-relaxed">Optimización técnica profunda y construcción
-                            de autoridad de dominio mediante linkbuilding ético.</p>
+                        <h3 class="mb-1 text-xl font-bold">SEO on-page y off-page</h3>
+                        <p class="text-sm leading-relaxed text-slate-600">Optimización técnica de tu sitio y enlaces desde
+                            otros sitios relevantes, sin trucos que Google penalice.</p>
                     </div>
                 </div>
-                <div
-                    class="flex flex-col gap-4 rounded-2xl border border-slate-200 bg-white p-6 hover:border-primary/50 transition-colors group">
-                    <div
-                        class="size-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors">
-                        <span class="material-symbols-outlined text-3xl">trending_up</span></div>
+                <div class="group flex flex-col gap-4 rounded-2xl border border-slate-200 bg-white p-6 transition-colors hover:border-primary/50">
+                    <span class="flex size-12 items-center justify-center rounded-xl bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-white">
+                        <span class="material-symbols-outlined text-3xl" aria-hidden="true">trending_up</span></span>
                     <div>
-                        <h3 class="text-xl font-bold mb-1">SEM & Paid Ads</h3>
-                        <p class="text-slate-500 text-sm leading-relaxed">Campañas en Google Ads y redes sociales
-                            enfocadas 100% en el retorno de inversión.</p>
+                        <h3 class="mb-1 text-xl font-bold">Google Ads y redes</h3>
+                        <p class="text-sm leading-relaxed text-slate-600">Campañas pagas medidas por lo que importa:
+                            cuánto te cuesta conseguir cada cliente.</p>
                     </div>
                 </div>
-                <div
-                    class="flex flex-col gap-4 rounded-2xl border border-slate-200 bg-white p-6 hover:border-primary/50 transition-colors group">
-                    <div
-                        class="size-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors">
-                        <span class="material-symbols-outlined text-3xl">article</span></div>
+                <div class="group flex flex-col gap-4 rounded-2xl border border-slate-200 bg-white p-6 transition-colors hover:border-primary/50">
+                    <span class="flex size-12 items-center justify-center rounded-xl bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-white">
+                        <span class="material-symbols-outlined text-3xl" aria-hidden="true">article</span></span>
                     <div>
-                        <h3 class="text-xl font-bold mb-1">Contenido Estratégico</h3>
-                        <p class="text-slate-500 text-sm leading-relaxed">Piezas de contenido de alto valor que atraen,
-                            educan y retienen a tu audiencia objetiva.</p>
+                        <h3 class="mb-1 text-xl font-bold">Contenido</h3>
+                        <p class="text-sm leading-relaxed text-slate-600">Artículos y páginas que responden lo que tus
+                            clientes buscan en Google.</p>
                     </div>
                 </div>
-                <div
-                    class="flex flex-col gap-4 rounded-2xl border border-slate-200 bg-white p-6 hover:border-primary/50 transition-colors group">
-                    <div
-                        class="size-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors">
-                        <span class="material-symbols-outlined text-3xl">location_on</span></div>
+                <div class="group flex flex-col gap-4 rounded-2xl border border-slate-200 bg-white p-6 transition-colors hover:border-primary/50">
+                    <span class="flex size-12 items-center justify-center rounded-xl bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-white">
+                        <span class="material-symbols-outlined text-3xl" aria-hidden="true">location_on</span></span>
                     <div>
-                        <h3 class="text-xl font-bold mb-1">SEO Local</h3>
-                        <p class="text-slate-500 text-sm leading-relaxed">Dominá las búsquedas locales y atraé tráfico
-                            físico optimizando tu presencia en mapas.</p>
+                        <h3 class="mb-1 text-xl font-bold">SEO local</h3>
+                        <p class="text-sm leading-relaxed text-slate-600">Aparecé en Google Maps cuando alguien busca lo
+                            que vendés cerca de tu local.</p>
                     </div>
                 </div>
             </div>
         </section>
-        <!-- ROADMAP -->
+
+        <!-- PROCESO -->
         <section class="space-y-10">
-            <div class="text-center space-y-3 max-w-3xl mx-auto">
-                <h2 class="text-slate-900 text-3xl font-black">Roadmap de Crecimiento Virtual</h2>
-                <p class="text-slate-500">Un proceso de cuatro etapas diseñado para escalar tu presencia digital.</p>
+            <div class="mx-auto max-w-3xl space-y-3 text-center">
+                <h2 class="text-3xl font-black text-slate-900">Cómo trabajamos</h2>
+                <p class="text-slate-600">Cuatro etapas para que tu presencia en Google crezca mes a mes.</p>
             </div>
-            <div class="relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div class="hidden lg:block absolute top-6 left-0 w-full h-0.5 bg-slate-200 z-0"></div>
-                <div class="relative z-10">
-                    <div
-                        class="size-12 rounded-full bg-primary flex items-center justify-center text-white font-bold text-xl mb-5 shadow-lg shadow-primary/20">
-                        1</div>
-                    <h4 class="text-lg font-bold mb-2">Auditoría & Análisis</h4>
-                    <p class="text-sm text-slate-500">Identificamos brechas técnicas, oportunidades de palabras clave y
-                        analizamos a tu competencia directa.</p>
+            <ol class="relative grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
+                <li class="relative z-10">
+                    <span class="mb-5 flex size-12 items-center justify-center rounded-full bg-primary text-xl font-bold text-white shadow-lg shadow-primary/20">1</span>
+                    <h3 class="mb-2 text-lg font-bold">Auditoría y análisis</h3>
+                    <p class="text-sm text-slate-600">Detectamos errores técnicos, palabras clave con oportunidad y qué
+                        hace tu competencia.</p>
+                </li>
+                <li class="relative z-10">
+                    <span class="mb-5 flex size-12 items-center justify-center rounded-full bg-primary text-xl font-bold text-white shadow-lg shadow-primary/20">2</span>
+                    <h3 class="mb-2 text-lg font-bold">Optimización base</h3>
+                    <p class="text-sm text-slate-600">Corregimos errores de SEO, mejoramos la velocidad y ordenamos los
+                        textos de tu web.</p>
+                </li>
+                <li class="relative z-10">
+                    <span class="mb-5 flex size-12 items-center justify-center rounded-full bg-primary text-xl font-bold text-white shadow-lg shadow-primary/20">3</span>
+                    <h3 class="mb-2 text-lg font-bold">Ejecución</h3>
+                    <p class="text-sm text-slate-600">Lanzamos campañas y publicamos contenido optimizado de forma
+                        constante.</p>
+                </li>
+                <li class="relative z-10">
+                    <span class="mb-5 flex size-12 items-center justify-center rounded-full bg-primary text-xl font-bold text-white shadow-lg shadow-primary/20">4</span>
+                    <h3 class="mb-2 text-lg font-bold">Medición y mejora</h3>
+                    <p class="text-sm text-slate-600">Revisamos los datos para ajustar la estrategia y bajar el costo de
+                        cada cliente nuevo.</p>
+                </li>
+            </ol>
+        </section>
+
+        <!-- MÉTRICAS -->
+        <section id="metricas" class="overflow-hidden rounded-[2rem] bg-slate-900 text-white">
+            <div class="grid grid-cols-1 lg:grid-cols-2">
+                <div class="space-y-8 p-8 lg:p-14">
+                    <div>
+                        <h2 class="mb-3 text-3xl font-black lg:text-4xl">Qué medimos cada mes</h2>
+                        <p class="text-lg text-slate-300">No te mandamos reportes de vanidad. Seguimos los números que
+                            muestran si el trabajo trae clientes.</p>
+                    </div>
+                    <dl class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                        <div>
+                            <dt class="text-sm font-bold uppercase tracking-widest text-sky-400">Tráfico orgánico</dt>
+                            <dd class="mt-1 text-sm text-slate-300">Visitas que llegan desde Google sin pagar anuncios.</dd>
+                        </div>
+                        <div>
+                            <dt class="text-sm font-bold uppercase tracking-widest text-sky-400">Posiciones</dt>
+                            <dd class="mt-1 text-sm text-slate-300">En qué lugar aparecés para las búsquedas clave.</dd>
+                        </div>
+                        <div>
+                            <dt class="text-sm font-bold uppercase tracking-widest text-sky-400">Costo por consulta</dt>
+                            <dd class="mt-1 text-sm text-slate-300">Cuánto pagás en anuncios por cada contacto.</dd>
+                        </div>
+                        <div>
+                            <dt class="text-sm font-bold uppercase tracking-widest text-sky-400">Acciones en Maps</dt>
+                            <dd class="mt-1 text-sm text-slate-300">Llamadas, mensajes y pedidos de ruta a tu local.</dd>
+                        </div>
+                    </dl>
+                    <a href="/contacto.html" data-wa="Hola, quiero la auditoría gratuita de SEO."
+                        class="inline-block rounded-xl bg-white px-8 py-4 font-bold text-slate-900 transition-colors hover:bg-slate-100">
+                        Pedir auditoría gratuita</a>
                 </div>
-                <div class="relative z-10">
-                    <div
-                        class="size-12 rounded-full bg-primary flex items-center justify-center text-white font-bold text-xl mb-5 shadow-lg shadow-primary/20">
-                        2</div>
-                    <h4 class="text-lg font-bold mb-2">Optimización Base</h4>
-                    <p class="text-sm text-slate-500">Corrección de errores técnicos SEO, mejora de velocidad y
-                        alineación de mensajes publicitarios.</p>
-                </div>
-                <div class="relative z-10">
-                    <div
-                        class="size-12 rounded-full bg-primary flex items-center justify-center text-white font-bold text-xl mb-5 shadow-lg shadow-primary/20">
-                        3</div>
-                    <h4 class="text-lg font-bold mb-2">Ejecución & Escala</h4>
-                    <p class="text-sm text-slate-500">Lanzamiento de campañas SEM de alto rendimiento y producción
-                        constante de contenido optimizado.</p>
-                </div>
-                <div class="relative z-10">
-                    <div
-                        class="size-12 rounded-full bg-primary flex items-center justify-center text-white font-bold text-xl mb-5 shadow-lg shadow-primary/20">
-                        4</div>
-                    <h4 class="text-lg font-bold mb-2">Monitoreo & Mejora</h4>
-                    <p class="text-sm text-slate-500">Análisis de datos en tiempo real para refinar estrategias y
-                        maximizar el costo por adquisición.</p>
+                <div class="relative min-h-[260px] lg:min-h-full">
+                    <img class="absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async" width="600" height="600"
+                        src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=75&auto=format"
+                        alt="" />
+                    <div class="absolute inset-0 hidden bg-gradient-to-r from-slate-900 via-transparent to-transparent lg:block"></div>
                 </div>
             </div>
         </section>
-        <!-- RESULTADOS -->
-        <section class="rounded-[2rem] bg-slate-900 text-white overflow-hidden">
-            <div class="grid grid-cols-1 lg:grid-cols-2">
-                <div class="p-8 lg:p-14 space-y-8">
-                    <div>
-                        <h2 class="text-3xl lg:text-4xl font-black mb-3">Resultados Probados en Generación de Leads</h2>
-                        <p class="text-slate-400 text-lg">No solo prometemos tráfico, entregamos clientes potenciales
-                            listos para convertir.</p>
-                    </div>
-                    <div class="grid grid-cols-2 gap-8">
-                        <div><span class="text-4xl font-black text-primary/90">+145%</span>
-                            <p class="text-sm text-slate-400 uppercase tracking-widest font-bold mt-1">Tráfico Orgánico
-                            </p>
-                        </div>
-                        <div><span class="text-4xl font-black text-primary/90">-30%</span>
-                            <p class="text-sm text-slate-400 uppercase tracking-widest font-bold mt-1">Costo por Lead
-                            </p>
-                        </div>
-                        <div><span class="text-4xl font-black text-primary/90">89%</span>
-                            <p class="text-sm text-slate-400 uppercase tracking-widest font-bold mt-1">Tasa de Retención
-                            </p>
-                        </div>
-                        <div><span class="text-4xl font-black text-primary/90">2.4M</span>
-                            <p class="text-sm text-slate-400 uppercase tracking-widest font-bold mt-1">Leads Generados
-                            </p>
-                        </div>
-                    </div>
-                    <a href="portfolio.html"
-                        class="inline-block px-8 py-4 bg-white text-slate-900 rounded-xl font-bold hover:bg-slate-100 transition-colors">Ver
-                        Casos de Éxito</a>
-                </div>
-                <div class="relative min-h-[280px] lg:min-h-full">
-                    <img class="absolute inset-0 w-full h-full object-cover"
-                        src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80"
-                        alt="Gráfico de crecimiento mostrando tendencia al alza" />
-                    <div
-                        class="absolute inset-0 bg-gradient-to-r from-slate-900 via-transparent to-transparent lg:block hidden">
-                    </div>
-                </div>
+
+        <!-- CTA -->
+        <section class="flex flex-col items-start justify-between gap-8 border-t border-slate-200 pb-4 pt-12 md:flex-row md:items-center">
+            <p class="max-w-md text-lg text-slate-600">Empezá con una auditoría gratuita: te mostramos cómo aparecés
+                hoy en Google y qué cambiar primero.</p>
+            <div>
+                <h2 class="mb-3 text-2xl font-black text-slate-900">¿Listo para crecer?</h2>
+                <a href="/contacto.html" data-wa="Hola, quiero la auditoría gratuita de SEO."
+                    class="inline-block rounded-xl bg-primary px-8 py-4 font-bold text-white transition-all hover:bg-primary/90 hover:shadow-lg hover:shadow-primary/20">
+                    Solicitar auditoría gratuita</a>
             </div>
         </section>
     </main>
-    <!-- FOOTER CTA -->
-    <section class="px-6 lg:px-20 py-12">
-        <div
-            class="max-w-6xl mx-auto border-t border-slate-200 pt-12 flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
-            <div class="space-y-3">
-                <div class="flex items-center gap-3"><img class="h-8 w-auto" src="/logo-enlace.png" alt="Enlace" /><span
-                        class="font-bold text-slate-700 text-lg">Enlace Agencia Digital</span></div>
-                <p class="text-slate-500 max-w-xs text-sm">Elevando marcas locales a horizontes globales a través del
-                    posicionamiento inteligente.</p>
-            </div>
-            <div>
-                <h3 class="text-2xl font-black text-slate-900 mb-3">¿Listo para crecer?</h3>
-                <a href="contacto.html"
-                    class="inline-block bg-primary text-white px-8 py-4 rounded-xl font-bold hover:bg-primary/90 hover:shadow-lg hover:shadow-primary/20 transition-all">Solicitar
-                    Auditoría Gratuita</a>
-            </div>
-        </div>
-        <div
-            class="max-w-6xl mx-auto mt-10 flex flex-col md:flex-row justify-between text-xs text-slate-400 gap-3 border-t border-slate-100 pt-6">
-            <p>© 2024 Enlace Agencia Digital. Todos los derechos reservados.</p>
-            <div class="flex gap-6"><a class="hover:text-primary transition-colors" href="#">Política de
-                    Privacidad</a><a class="hover:text-primary transition-colors" href="#">Términos de Servicio</a>
-            </div>
-        </div>
-    </section>
-    <script src="/navbar.js"></script>
-    <script src="/infinite-grid.js"></script>
-<script src="/footer.js"></script>`n    <script src="/chatbot.js"></script>
+
+    <footer id="site-footer"></footer>
+    <script type="module" src="/static.tsx"></script>
 </body>
 
 </html>
-
-

@@ -1,26 +1,11 @@
-"use client"
-
 import * as React from "react"
-import { cn } from "@/lib/utils"
-import { ChevronDown, Menu, X, ArrowRight, Cpu, Globe, Eye, Search, Palette, LineChart, FileText } from "lucide-react"
+import { Menu, X, Cpu, Globe, Search, Palette } from "lucide-react"
 import MegaMenu, { MegaMenuItem } from "@/components/ui/mega-menu"
+import { cn } from "@/lib/utils"
+import { SERVICES, whatsappUrl } from "@/lib/site"
 
-const LOGO_SVG = (
-  <img 
-    className="h-12 w-auto object-contain mix-blend-multiply drop-shadow-sm" 
-    src="/logo-enlace.png" 
-    alt="Enlace Agencia Digital Logo" 
-  />
-)
-
-const NAV_LINKS = [
-  { href: "#servicios", label: "Servicios", dropdown: true },
-  { href: "portfolio.html", label: "Portafolio" },
-  { href: "#precios", label: "Precios" },
-  { href: "nosotros.html", label: "Nosotros" },
-  { href: "blog.html", label: "Blog", dropdown: true },
-  { href: "contacto.html", label: "Contacto" },
-]
+const SERVICE_ICONS = [Palette, Globe, Search, Cpu]
+const services = SERVICES.map((s, i) => ({ ...s, icon: SERVICE_ICONS[i] }))
 
 const NAV_ITEMS: MegaMenuItem[] = [
   {
@@ -28,142 +13,121 @@ const NAV_ITEMS: MegaMenuItem[] = [
     label: "Servicios",
     subMenus: [
       {
-        title: "Identidad",
-        items: [
-          {
-            label: "Branding",
-            description: "Construimos marcas",
-            icon: Palette,
-            link: "servicio-branding.html",
-          },
-          {
-            label: "Diseño Visual",
-            description: "Interfaces y UX",
-            icon: Eye,
-            link: "servicio-branding.html",
-          },
-        ],
-      },
-      {
-        title: "Web & IA",
-        items: [
-          {
-            label: "Páginas Web",
-            description: "Desarrollo a medida",
-            icon: Globe,
-            link: "servicio-web.html",
-          },
-          {
-            label: "Inteligencia Artificial",
-            description: "Automatización",
-            icon: Cpu,
-            link: "servicio-ia.html",
-          },
-        ],
+        title: "Identidad y web",
+        items: services.slice(0, 2).map((s) => ({ label: s.label, description: s.description, icon: s.icon, link: s.href })),
       },
       {
         title: "Crecimiento",
-        items: [
-          {
-            label: "Posicionamiento SEO",
-            description: "Llega a los primeros lugares",
-            icon: Search,
-            link: "servicio-posicionamiento.html",
-          },
-          {
-            label: "Estrategia Digital",
-            description: "Marketing y datos",
-            icon: LineChart,
-            link: "servicio-posicionamiento.html",
-          },
-        ],
+        items: services.slice(2).map((s) => ({ label: s.label, description: s.description, icon: s.icon, link: s.href })),
       },
     ],
   },
-  { id: 2, label: "Portafolio", link: "portfolio.html" },
-  { id: 3, label: "Precios", link: "index.html#precios" },
-  { id: 4, label: "Nosotros", link: "nosotros.html" },
-  {
-    id: 5,
-    label: "Blog",
-    subMenus: [
-      {
-        title: "Últimas entradas",
-        items: [
-          {
-            label: "El Futuro de la IA en 2024",
-            description: "Cómo la IA transformará los negocios",
-            icon: FileText,
-            link: "blog.html",
-          },
-        ],
-      },
-    ],
-  },
-  { id: 6, label: "Contacto", link: "contacto.html" },
+  { id: 2, label: "Precios", link: "/#precios" },
+  { id: 3, label: "Nosotros", link: "/nosotros.html" },
+  { id: 4, label: "Contacto", link: "/contacto.html" },
+]
+
+const MOBILE_LINKS = [
+  { href: "/#precios", label: "Precios" },
+  { href: "/nosotros.html", label: "Nosotros" },
+  { href: "/contacto.html", label: "Contacto" },
 ]
 
 export function Navbar() {
   const [isOpen, setIsOpen] = React.useState(false)
-  const [activeDropdown, setActiveDropdown] = React.useState<string | null>(null)
+  // Vercel sirve /contacto y /contacto.html: se compara sin la extensión.
+  const path = window.location.pathname.replace(/\/index\.html$/, "/").replace(/\.html$/, "")
+  const isCurrent = (href: string) => path === href.replace(/\.html$/, "")
+
+  React.useEffect(() => {
+    if (!isOpen) return
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setIsOpen(false)
+    window.addEventListener("keydown", onKey)
+    return () => window.removeEventListener("keydown", onKey)
+  }, [isOpen])
 
   return (
-    <nav className="sticky top-0 z-[50] w-full border-b border-zinc-200 bg-white/80 backdrop-blur-md dark:border-zinc-800 dark:bg-zinc-950/80">
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        {/* Logo */}
-        <a href="/" className="flex items-center gap-2 transition-opacity hover:opacity-90">
-          {LOGO_SVG}
-        </a>
+    <nav aria-label="Principal" className="relative mx-auto flex h-full max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+      <a href="/" className="flex items-center transition-opacity hover:opacity-80">
+        <img src="/logo-enlace.png" alt="Enlace, ir al inicio" width={64} height={40} className="h-9 w-auto" />
+      </a>
 
-        {/* Desktop Navigation */}
-        <div className="hidden items-center md:flex">
-          <MegaMenu items={NAV_ITEMS} />
-        </div>
-
-        {/* CTA */}
-        <div className="hidden items-center gap-4 md:flex">
-          <a
-            href="https://wa.me/+"
-            className="rounded-full bg-zinc-900 px-6 py-2.5 text-sm font-bold text-white transition-all hover:bg-primary hover:shadow-lg dark:bg-zinc-50 dark:text-zinc-900"
-          >
-            Hablemos
-          </a>
-        </div>
-
-        {/* Mobile Menu Button */}
-        <button
-          className="rounded-md p-2 text-zinc-600 hover:bg-zinc-100 md:hidden dark:text-zinc-400 dark:hover:bg-zinc-800"
-          onClick={() => setIsOpen(!isOpen)}
-        >
-          {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-        </button>
+      <div className="hidden md:flex">
+        <MegaMenu items={NAV_ITEMS} activePath={path} />
       </div>
 
-      {/* Mobile Menu */}
+      <a
+        href={whatsappUrl("Hola, quiero hablar sobre un proyecto.")}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="hidden rounded-full bg-zinc-900 px-6 py-2.5 text-sm font-bold text-white transition-colors hover:bg-primary md:inline-flex"
+      >
+        Hablemos por WhatsApp
+      </a>
+
+      <button
+        type="button"
+        className="rounded-md p-2 text-zinc-700 hover:bg-zinc-100 md:hidden"
+        aria-label={isOpen ? "Cerrar menú" : "Abrir menú"}
+        aria-expanded={isOpen}
+        aria-controls="menu-movil"
+        onClick={() => setIsOpen(!isOpen)}
+      >
+        {isOpen ? <X className="h-6 w-6" aria-hidden="true" /> : <Menu className="h-6 w-6" aria-hidden="true" />}
+      </button>
+
       {isOpen && (
-        <div className="border-t border-zinc-200 bg-white p-4 md:hidden dark:border-zinc-800 dark:bg-zinc-950">
-          <div className="flex flex-col gap-2">
-            {NAV_LINKS.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                className="rounded-lg px-4 py-3 text-base font-medium text-zinc-900 hover:bg-zinc-100 dark:text-zinc-50 dark:hover:bg-zinc-800"
-                onClick={() => setIsOpen(false)}
-              >
-                {link.label}
-              </a>
+        <div
+          id="menu-movil"
+          className="absolute inset-x-0 top-full max-h-[calc(100dvh-4rem)] overflow-y-auto border-b border-zinc-200 bg-white p-4 shadow-lg md:hidden"
+        >
+          <p className="px-4 pb-1 pt-2 text-[11px] font-bold uppercase tracking-widest text-zinc-500">Servicios</p>
+          <ul className="mb-2 border-b border-zinc-100 pb-2">
+            {services.map((s) => (
+              <li key={s.href}>
+                <a
+                  href={s.href}
+                  aria-current={isCurrent(s.href) ? "page" : undefined}
+                  className={cn(
+                    "flex items-center gap-3 rounded-lg px-4 py-3 text-base font-medium text-zinc-700 hover:bg-zinc-100",
+                    isCurrent(s.href) && "text-primary",
+                  )}
+                  onClick={() => setIsOpen(false)}
+                >
+                  <s.icon className="h-4 w-4 text-zinc-400" aria-hidden="true" />
+                  {s.label}
+                </a>
+              </li>
             ))}
-            <a
-              href="https://wa.me/+"
-              className="mt-4 rounded-xl bg-primary py-4 text-center text-base font-bold text-white"
-              onClick={() => setIsOpen(false)}
-            >
-              Hablemos por WhatsApp
-            </a>
-          </div>
+          </ul>
+          <ul>
+            {MOBILE_LINKS.map((link) => (
+              <li key={link.href}>
+                <a
+                  href={link.href}
+                  aria-current={isCurrent(link.href) ? "page" : undefined}
+                  className={cn(
+                    "block rounded-lg px-4 py-3 text-base font-medium text-zinc-900 hover:bg-zinc-100",
+                    isCurrent(link.href) && "text-primary",
+                  )}
+                  onClick={() => setIsOpen(false)}
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+          <a
+            href={whatsappUrl("Hola, quiero hablar sobre un proyecto.")}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-4 block rounded-xl bg-primary py-4 text-center text-base font-bold text-white"
+            onClick={() => setIsOpen(false)}
+          >
+            Hablemos por WhatsApp
+          </a>
         </div>
       )}
     </nav>
   )
 }
-

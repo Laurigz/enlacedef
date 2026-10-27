@@ -1,7 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
- 
+
 @layer base {
   :root {
     --background: 210 20% 98%;
@@ -70,12 +70,90 @@
   * {
     border-color: hsl(var(--border));
   }
-  body {
-    background-color: hsl(var(--background));
-    color: hsl(var(--foreground));
-  }
   html {
     scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+  }
+  body {
+    position: relative;
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    -webkit-font-smoothing: antialiased;
+  }
+  /* Fondo de manchas de color. Gradientes en lugar de filter: blur() para no cargar la GPU en celulares. */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background:
+      radial-gradient(40% 40% at 10% 5%, rgb(0 52 211 / 0.10), transparent 70%),
+      radial-gradient(35% 35% at 95% 20%, rgb(153 204 255 / 0.30), transparent 70%),
+      radial-gradient(35% 35% at 5% 60%, rgb(0 48 135 / 0.07), transparent 70%),
+      radial-gradient(40% 40% at 85% 70%, rgb(0 52 211 / 0.08), transparent 70%),
+      radial-gradient(50% 40% at 40% 105%, rgb(153 204 255 / 0.25), transparent 70%),
+      linear-gradient(60deg, #f0f4ff 0%, #f8faff 50%, #f5f0ff 100%);
+  }
+  :focus-visible {
+    outline: 2px solid hsl(var(--primary));
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    height: 4rem;
+    border-bottom: 1px solid #e4e4e7;
+    background-color: rgb(255 255 255 / 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+  .glass {
+    background: rgb(255 255 255 / 0.65);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgb(255 255 255 / 0.4);
+  }
+  .fade-up {
+    animation: fade-up 0.7s ease-out both;
+  }
+  .fade-up-1 { animation-delay: 0.1s; }
+  .fade-up-2 { animation-delay: 0.2s; }
+  .fade-up-3 { animation-delay: 0.3s; }
+  .fade-up-4 { animation-delay: 0.4s; }
+  .fade-up-5 { animation-delay: 0.5s; }
+  .material-symbols-outlined {
+    font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+    user-select: none;
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    animation-delay: 0ms !important;
+    transition-duration: 0.01ms !important;
   }
 }
 

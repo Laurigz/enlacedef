@@ -1,18 +1,16 @@
-"use client"
-
 import { useState } from "react"
-import { Button } from "@/components/ui/button"
+import { buttonVariants } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { ArrowRightIcon, CheckIcon } from "@radix-ui/react-icons"
 import { cn } from "@/lib/utils"
+import { formatARS, whatsappUrl } from "@/lib/site"
 
 interface Feature {
   name: string
   description: string
-  included: boolean
 }
 
-interface PricingTier {
+export interface PricingTier {
   name: string
   price: {
     monthly: number
@@ -20,6 +18,7 @@ interface PricingTier {
   }
   description: string
   features: Feature[]
+  cta: string
   highlight?: boolean
   badge?: string
   icon: React.ReactNode
@@ -33,173 +32,115 @@ interface PricingSectionProps {
 function PricingSection({ tiers, className }: PricingSectionProps) {
   const [isYearly, setIsYearly] = useState(false)
 
-  const buttonStyles = {
-    default: cn(
-      "h-12 bg-white dark:bg-zinc-900",
-      "hover:bg-zinc-50 dark:hover:bg-zinc-800",
-      "text-zinc-900 dark:text-zinc-100",
-      "border border-zinc-200 dark:border-zinc-800",
-      "hover:border-zinc-300 dark:hover:border-zinc-700",
-      "shadow-sm hover:shadow-md",
-      "text-sm font-medium",
-    ),
-    highlight: cn(
-      "h-12 bg-zinc-900 dark:bg-zinc-100",
-      "hover:bg-zinc-800 dark:hover:bg-zinc-300",
-      "text-white dark:text-zinc-900",
-      "shadow-[0_1px_15px_rgba(0,0,0,0.1)]",
-      "hover:shadow-[0_1px_20px_rgba(0,0,0,0.15)]",
-      "font-semibold text-base",
-    ),
-  }
-
-  const badgeStyles = cn(
-    "px-4 py-1.5 text-sm font-medium",
-    "bg-zinc-900 dark:bg-zinc-100",
-    "text-white dark:text-zinc-900",
-    "border-none shadow-lg",
-  )
-
   return (
-    <section
-      id="precios"
-      className={cn(
-        "relative bg-background text-foreground",
-        "py-12 px-4 md:py-24 lg:py-32",
-        "overflow-hidden",
-        className,
-      )}
-    >
-      <div className="w-full max-w-5xl mx-auto">
-        <div className="flex flex-col items-center gap-4 mb-12">
-          <h2 className="text-3xl font-bold text-zinc-900 dark:text-zinc-50">
-            Mantenimiento Personalizado
-          </h2>
-          <div className="inline-flex items-center p-1.5 bg-white dark:bg-zinc-800/50 rounded-full border border-zinc-200 dark:border-zinc-700 shadow-sm">
-            {["Mes", "Año"].map((period) => (
+    <section id="precios" className={cn("relative overflow-hidden px-4 py-16 md:py-24 lg:py-28", className)}>
+      <div className="mx-auto w-full max-w-5xl">
+        <div className="mb-12 flex flex-col items-center gap-4 text-center">
+          <h2 className="text-3xl font-black tracking-tight text-zinc-900 md:text-4xl">Planes mensuales</h2>
+          <p className="max-w-xl text-zinc-600">
+            Precios en pesos argentinos. Pagando el año completo te ahorrás 2 meses.
+          </p>
+          <div
+            role="group"
+            aria-label="Período de facturación"
+            className="inline-flex items-center rounded-full border border-zinc-200 bg-white p-1.5 shadow-sm"
+          >
+            {[
+              { label: "Mensual", yearly: false },
+              { label: "Anual", yearly: true },
+            ].map((period) => (
               <button
-                key={period}
-                onClick={() => setIsYearly(period === "Año")}
+                key={period.label}
+                type="button"
+                aria-pressed={isYearly === period.yearly}
+                onClick={() => setIsYearly(period.yearly)}
                 className={cn(
-                  "px-8 py-2.5 text-sm font-medium rounded-full transition-all duration-300",
-                  (period === "Año") === isYearly
-                    ? "bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 shadow-lg"
-                    : "text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100",
+                  "rounded-full px-8 py-2.5 text-sm font-medium transition-all duration-300",
+                  isYearly === period.yearly
+                    ? "bg-zinc-900 text-white shadow-lg"
+                    : "text-zinc-600 hover:text-zinc-900",
                 )}
               >
-                {period}
+                {period.label}
               </button>
             ))}
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {tiers.map((tier) => (
-            <div
-              key={tier.name}
-              className={cn(
-                "relative group backdrop-blur-sm",
-                "rounded-3xl transition-all duration-300",
-                "flex flex-col",
-                tier.highlight
-                  ? "bg-gradient-to-b from-zinc-100/80 to-transparent dark:from-zinc-400/[0.15]"
-                  : "bg-white dark:bg-zinc-800/50",
-                "border",
-                tier.highlight
-                  ? "border-zinc-400/50 dark:border-zinc-400/20 shadow-xl"
-                  : "border-zinc-200 dark:border-zinc-700 shadow-md",
-                "hover:translate-y-0 hover:shadow-lg",
-              )}
-            >
-              {tier.badge && tier.highlight && (
-                <div className="absolute -top-4 left-6">
-                  <Badge className={badgeStyles}>{tier.badge}</Badge>
-                </div>
-              )}
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
+          {tiers.map((tier) => {
+            const price = isYearly ? tier.price.yearly : tier.price.monthly
+            const saving = tier.price.monthly * 12 - tier.price.yearly
+            return (
+              <div
+                key={tier.name}
+                className={cn(
+                  "relative flex flex-col rounded-3xl border backdrop-blur-sm transition-all duration-300",
+                  tier.highlight
+                    ? "border-zinc-400/50 bg-gradient-to-b from-white to-zinc-50 shadow-xl"
+                    : "border-zinc-200 bg-white shadow-md",
+                )}
+              >
+                {tier.badge && (
+                  <div className="absolute -top-4 left-6">
+                    <Badge className="border-none bg-zinc-900 px-4 py-1.5 text-sm font-medium text-white shadow-lg hover:bg-zinc-900">
+                      {tier.badge}
+                    </Badge>
+                  </div>
+                )}
 
-              <div className="p-8 flex-1">
-                <div className="flex items-center justify-between mb-4">
-                  <div
+                <div className="flex-1 p-8">
+                  <div className="mb-4 flex items-center justify-between">
+                    <div className="rounded-xl bg-zinc-100 p-3 text-zinc-700">{tier.icon}</div>
+                    <h3 className="text-xl font-semibold text-zinc-900">{tier.name}</h3>
+                  </div>
+
+                  <div className="mb-6">
+                    <div className="flex items-baseline gap-2">
+                      <span className="text-4xl font-bold text-zinc-900">{formatARS(price)}</span>
+                      <span className="text-sm text-zinc-500">/{isYearly ? "año" : "mes"}</span>
+                    </div>
+                    <p className="mt-1 h-5 text-sm font-medium text-emerald-700">
+                      {isYearly && saving > 0 ? `Te ahorrás ${formatARS(saving)}` : ""}
+                    </p>
+                    <p className="mt-2 text-sm text-zinc-600">{tier.description}</p>
+                  </div>
+
+                  <ul className="space-y-4">
+                    {tier.features.map((feature) => (
+                      <li key={feature.name} className="flex gap-4">
+                        <CheckIcon className="mt-1 h-4 w-4 shrink-0 text-emerald-600" aria-hidden="true" />
+                        <div>
+                          <div className="text-sm font-medium text-zinc-900">{feature.name}</div>
+                          <div className="text-sm text-zinc-600">{feature.description}</div>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="mt-auto p-8 pt-0">
+                  <a
+                    href={whatsappUrl(
+                      `Hola, me interesa el plan ${tier.name} (${isYearly ? "anual" : "mensual"}).`,
+                    )}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className={cn(
-                      "p-3 rounded-xl",
+                      buttonVariants(),
+                      "h-12 w-full gap-2 rounded-xl text-sm font-semibold transition-all duration-300",
                       tier.highlight
-                        ? "bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100"
-                        : "bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400",
+                        ? "bg-zinc-900 text-white hover:bg-primary"
+                        : "border border-zinc-200 bg-white text-zinc-900 shadow-sm hover:border-zinc-300 hover:bg-zinc-50",
                     )}
                   >
-                    {tier.icon}
-                  </div>
-                  <h3 className="text-xl font-semibold text-zinc-900 dark:text-zinc-100">
-                    {tier.name}
-                  </h3>
-                </div>
-
-                <div className="mb-6">
-                  <div className="flex items-baseline gap-2">
-                    <span className="text-4xl font-bold text-zinc-900 dark:text-zinc-100">
-                      ${isYearly ? tier.price.yearly : tier.price.monthly}
-                    </span>
-                    <span className="text-sm text-zinc-500 dark:text-zinc-400">
-                      /{isYearly ? "año" : "mes"}
-                    </span>
-                  </div>
-                  <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
-                    {tier.description}
-                  </p>
-                </div>
-
-                <div className="space-y-4">
-                  {tier.features.map((feature) => (
-                    <div key={feature.name} className="flex gap-4">
-                      <div
-                        className={cn(
-                          "mt-1 p-0.5 rounded-full transition-colors duration-200",
-                          feature.included
-                            ? "text-emerald-600 dark:text-emerald-400"
-                            : "text-zinc-400 dark:text-zinc-600",
-                        )}
-                      >
-                        <CheckIcon className="w-4 h-4" />
-                      </div>
-                      <div>
-                        <div className="text-sm font-medium text-zinc-900 dark:text-zinc-100">
-                          {feature.name}
-                        </div>
-                        <div className="text-sm text-zinc-500 dark:text-zinc-400">
-                          {feature.description}
-                        </div>
-                      </div>
-                    </div>
-                  ))}
+                    {tier.cta}
+                    <ArrowRightIcon className="h-4 w-4" aria-hidden="true" />
+                  </a>
                 </div>
               </div>
-
-              <div className="p-8 pt-0 mt-auto">
-                <Button
-                  className={cn(
-                    "w-full relative transition-all duration-300",
-                    tier.highlight
-                      ? buttonStyles.highlight
-                      : buttonStyles.default,
-                  )}
-                >
-                  <span className="relative z-10 flex items-center justify-center gap-2">
-                    {tier.highlight ? (
-                      <>
-                        Quiero mi sitio web
-                        <ArrowRightIcon className="w-4 h-4" />
-                      </>
-                    ) : (
-                      <>
-                        Quiero impulsar mi local
-                        <ArrowRightIcon className="w-4 h-4" />
-                      </>
-                    )}
-                  </span>
-                </Button>
-              </div>
-            </div>
-          ))}
+            )
+          })}
         </div>
       </div>
     </section>

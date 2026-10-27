@@ -1,150 +1,156 @@
-import * as React from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown } from "lucide-react";
+import * as React from "react"
+import { ChevronDown } from "lucide-react"
+import { cn } from "@/lib/utils"
 
 export type MegaMenuItem = {
-  id: number;
-  label: string;
+  id: number
+  label: string
   subMenus?: {
-    title: string;
+    title: string
     items: {
-      label: string;
-      description: string;
-      icon: React.ElementType;
-      link?: string;
-    }[];
-  }[];
-  link?: string;
-};
-
-export interface MegaMenuProps extends React.HTMLAttributes<HTMLUListElement> {
-  items: MegaMenuItem[];
-  className?: string;
+      label: string
+      description: string
+      icon: React.ElementType
+      link: string
+    }[]
+  }[]
+  link?: string
 }
 
-const MegaMenu = React.forwardRef<HTMLUListElement, MegaMenuProps>(
-  ({ items, className, ...props }, ref) => {
-    const [openMenu, setOpenMenu] = React.useState<string | null>(null);
-    const [isHover, setIsHover] = React.useState<number | null>(null);
+export interface MegaMenuProps extends React.HTMLAttributes<HTMLUListElement> {
+  items: MegaMenuItem[]
+  activePath?: string
+}
 
-    const handleHover = (menuLabel: string | null) => {
-      setOpenMenu(menuLabel);
-    };
+const itemClass =
+  "relative z-10 flex cursor-pointer items-center justify-center gap-1 rounded-full px-4 py-1.5 text-sm font-medium transition-colors duration-300 text-zinc-600 hover:text-zinc-900"
+
+type Pill = { left: number; width: number; visible: boolean }
+
+const MegaMenu = React.forwardRef<HTMLUListElement, MegaMenuProps>(
+  ({ items, activePath, className, ...props }, ref) => {
+    const [openMenu, setOpenMenu] = React.useState<number | null>(null)
+    const [pill, setPill] = React.useState<Pill>({ left: 0, width: 0, visible: false })
+
+    // Fondo gris que se desliza hasta el ítem bajo el cursor.
+    const movePill = (e: React.SyntheticEvent<HTMLElement>) => {
+      const el = e.currentTarget
+      setPill({ left: el.offsetLeft, width: el.offsetWidth, visible: true })
+    }
+    const hidePill = () => setPill((p) => ({ ...p, visible: false }))
 
     return (
       <ul
         ref={ref}
-        className={`relative flex items-center space-x-0 ${className || ""}`}
+        className={cn("relative flex items-center", className)}
+        onMouseLeave={hidePill}
         {...props}
       >
+        <li
+          aria-hidden="true"
+          className={cn(
+            "pointer-events-none absolute inset-y-0 left-0 rounded-full bg-zinc-100 transition-[transform,width,opacity] duration-300 ease-out",
+            pill.visible ? "opacity-100" : "opacity-0",
+          )}
+          style={{ transform: `translateX(${pill.left}px)`, width: pill.width }}
+        />
+
         {items.map((navItem) => {
-          if (!navItem.subMenus && navItem.link) {
+          if (!navItem.subMenus) {
+            const isActive = activePath === navItem.link?.replace(/\.html$/, "")
             return (
-              <li key={navItem.label} className="relative">
+              <li key={navItem.id} className="relative" onMouseEnter={movePill}>
                 <a
                   href={navItem.link}
-                  className="relative flex cursor-pointer items-center justify-center gap-1 py-1.5 px-4 text-sm font-medium transition-colors duration-300 group
-                    text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-50 z-10"
-                  onMouseEnter={() => setIsHover(navItem.id)}
-                  onMouseLeave={() => setIsHover(null)}
+                  aria-current={isActive ? "page" : undefined}
+                  className={cn(itemClass, isActive && "font-semibold text-zinc-900")}
                 >
-                  {isHover === navItem.id && (
-                    <motion.div
-                      layoutId="hover-bg"
-                      className="absolute inset-0 size-full bg-zinc-100 dark:bg-zinc-800"
-                      style={{ borderRadius: 99, zIndex: -1 }}
-                    />
-                  )}
-                  <span className="relative z-10">{navItem.label}</span>
+                  {navItem.label}
                 </a>
               </li>
-            );
+            )
           }
 
+          const panelId = `mega-menu-${navItem.id}`
           return (
             <li
-              key={navItem.label}
+              key={navItem.id}
               className="relative"
-              onMouseEnter={() => handleHover(navItem.label)}
-              onMouseLeave={() => handleHover(null)}
+              onMouseEnter={(e) => {
+                movePill(e)
+                setOpenMenu(navItem.id)
+              }}
+              onMouseLeave={() => setOpenMenu(null)}
+              onBlur={(e) => {
+                if (!e.currentTarget.contains(e.relatedTarget as Node | null)) setOpenMenu(null)
+              }}
+              onKeyDown={(e) => {
+                if (e.key === "Escape" && openMenu === navItem.id) {
+                  setOpenMenu(null)
+                  e.currentTarget.querySelector("button")?.focus()
+                }
+              }}
             >
               <button
-                className="relative flex cursor-pointer items-center justify-center gap-1 py-1.5 px-4 text-sm font-medium transition-colors duration-300 group
-                  text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-50 z-10"
-                onMouseEnter={() => setIsHover(navItem.id)}
-                onMouseLeave={() => setIsHover(null)}
+                type="button"
+                aria-expanded={openMenu === navItem.id}
+                aria-controls={panelId}
+                className={itemClass}
+                onClick={() => setOpenMenu(openMenu === navItem.id ? null : navItem.id)}
               >
-                {(isHover === navItem.id || openMenu === navItem.label) && (
-                  <motion.div
-                    layoutId="hover-bg"
-                    className="absolute inset-0 size-full bg-zinc-100 dark:bg-zinc-800"
-                    style={{ borderRadius: 99, zIndex: -1 }}
-                  />
-                )}
-                <span className="relative z-10">{navItem.label}</span>
-                {navItem.subMenus && (
-                  <ChevronDown
-                    className={`relative z-10 h-4 w-4 transition-transform duration-300 group-hover:rotate-180 ${
-                      openMenu === navItem.label ? "rotate-180" : ""
-                    }`}
-                  />
-                )}
+                {navItem.label}
+                <ChevronDown
+                  aria-hidden="true"
+                  className={cn(
+                    "h-4 w-4 transition-transform duration-300",
+                    openMenu === navItem.id && "rotate-180",
+                  )}
+                />
               </button>
 
-              <AnimatePresence>
-                {openMenu === navItem.label && navItem.subMenus && (
-                  <div className="absolute left-1/2 -translate-x-1/2 top-full w-auto pt-3 z-10">
-                    <motion.div
-                      className="w-max border border-zinc-200 bg-white p-5 shadow-xl dark:border-zinc-800 dark:bg-zinc-950"
-                      style={{ borderRadius: 14 }}
-                      layoutId="menu"
-                    >
-                      <div className="flex w-fit shrink-0 space-x-6 overflow-hidden">
-                        {navItem.subMenus.map((sub) => (
-                          <motion.div layout className="w-full" key={sub.title}>
-                            <h3 className="mb-3 text-[10px] font-bold uppercase tracking-widest text-zinc-400">
-                              {sub.title}
-                            </h3>
-                            <ul className="space-y-4">
-                              {sub.items.map((item) => {
-                                const Icon = item.icon;
-                                return (
-                                  <li key={item.label}>
-                                    <a
-                                      href={item.link || "#"}
-                                      className="flex items-start space-x-3 group"
-                                    >
-                                      <div className="flex size-8 shrink-0 items-center justify-center rounded-md border text-zinc-600 border-zinc-200 transition-colors duration-300 group-hover:bg-zinc-100 group-hover:text-zinc-900 dark:border-zinc-800 dark:text-zinc-400 dark:group-hover:bg-zinc-800 dark:group-hover:text-zinc-50">
-                                        <Icon className="h-4 w-4 flex-none" />
-                                      </div>
-                                      <div className="w-max leading-none">
-                                        <p className="shrink-0 text-sm font-medium text-zinc-900 dark:text-zinc-50 transition-colors duration-300 group-hover:text-primary mb-1">
-                                          {item.label}
-                                        </p>
-                                        <p className="shrink-0 text-[11px] leading-tight text-zinc-500 transition-colors duration-300 dark:text-zinc-400">
-                                          {item.description}
-                                        </p>
-                                      </div>
-                                    </a>
-                                  </li>
-                                );
-                              })}
-                            </ul>
-                          </motion.div>
-                        ))}
-                      </div>
-                    </motion.div>
+              {openMenu === navItem.id && (
+                <div id={panelId} className="absolute left-1/2 top-full z-10 -translate-x-1/2 pt-3">
+                  <div className="w-max rounded-[14px] border border-zinc-200 bg-white p-5 shadow-xl duration-200 animate-in fade-in slide-in-from-top-2">
+                    <div className="flex gap-8">
+                      {navItem.subMenus.map((sub) => (
+                        <div key={sub.title}>
+                          <p className="mb-3 text-[11px] font-bold uppercase tracking-widest text-zinc-500">
+                            {sub.title}
+                          </p>
+                          <ul className="space-y-4">
+                            {sub.items.map((item) => {
+                              const Icon = item.icon
+                              return (
+                                <li key={item.label}>
+                                  <a href={item.link} className="group flex items-start gap-3">
+                                    <span className="flex size-9 shrink-0 items-center justify-center rounded-lg border border-zinc-200 text-zinc-600 transition-colors duration-300 group-hover:border-primary/30 group-hover:bg-primary/5 group-hover:text-primary">
+                                      <Icon className="h-4 w-4" aria-hidden="true" />
+                                    </span>
+                                    <span className="leading-tight">
+                                      <span className="block text-sm font-semibold text-zinc-900 transition-colors duration-300 group-hover:text-primary">
+                                        {item.label}
+                                      </span>
+                                      <span className="mt-0.5 block text-xs text-zinc-500">{item.description}</span>
+                                    </span>
+                                  </a>
+                                </li>
+                              )
+                            })}
+                          </ul>
+                        </div>
+                      ))}
+                    </div>
                   </div>
-                )}
-              </AnimatePresence>
+                </div>
+              )}
             </li>
-          );
+          )
         })}
       </ul>
-    );
-  }
-);
+    )
+  },
+)
 
-MegaMenu.displayName = "MegaMenu";
+MegaMenu.displayName = "MegaMenu"
 
-export default MegaMenu;
+export default MegaMenu
