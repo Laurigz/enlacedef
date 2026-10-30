@@ -11,7 +11,7 @@ export function SiteFooter() {
 
   return (
     <div className="mx-auto max-w-7xl px-4 pb-10 pt-16 sm:px-6 lg:px-8">
-      <div className="grid gap-10 rounded-3xl border border-white/60 bg-white/70 p-8 backdrop-blur-md md:grid-cols-[1.5fr_1fr_1fr_1.2fr] md:p-10">
+      <div className="grid gap-10 border-t-2 border-zinc-950 pt-10 md:grid-cols-[1.5fr_1fr_1fr_1.2fr]">
         <div>
           <a href="/" className="inline-block">
             <img src="/logo-enlace.png" alt="Enlace, ir al inicio" width={64} height={40} className="h-10 w-auto" />
