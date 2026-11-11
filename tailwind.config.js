@@ -22,8 +22,21 @@ export default {
     extend: {
       fontFamily: {
         sans: ["Inter", ...defaultTheme.fontFamily.sans],
+        geist: ["Geist", ...defaultTheme.fontFamily.sans],
+        mono: ['"Geist Mono"', ...defaultTheme.fontFamily.mono],
       },
       colors: {
+        // Paleta del inicio (modo oscuro)
+        ink: {
+          950: "#05060a",
+          900: "#0a0c12",
+          850: "#0e1118",
+          800: "#131722",
+          700: "#1c212e",
+          600: "#2a3142",
+        },
+        electric: "#4f7cff",
+        signal: "#5ef2c6",
         "app-border": "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

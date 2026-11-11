@@ -112,6 +112,30 @@
   }
 }
 
+@keyframes rail {
+  from {
+    left: 0;
+  }
+  to {
+    left: calc(100% - 6rem);
+  }
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: -240;
+  }
+}
+
+@keyframes travel {
+  from {
+    left: 0;
+  }
+  to {
+    left: calc(100% - 5px);
+  }
+}
+
 @keyframes fade-up {
   from {
     opacity: 0;

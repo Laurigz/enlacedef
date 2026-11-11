@@ -1,30 +1,34 @@
-import { Navbar } from "@/components/blocks/navbar"
-import { Hero } from "@/components/blocks/hero"
-import { SolucionesIA } from "@/components/blocks/soluciones-ia"
-import { Servicios } from "@/components/blocks/servicios"
-import { Proceso } from "@/components/blocks/proceso"
-import { Precios } from "@/components/blocks/precios"
-import { CtaFinal } from "@/components/blocks/cta-final"
-import { SiteFooter } from "@/components/blocks/site-footer"
+import { HomeHeader } from "@/components/home/header"
+import { Hero } from "@/components/home/hero"
+import { Servicios } from "@/components/home/servicios"
+import { Proyectos } from "@/components/home/proyectos"
+import { Protocolo } from "@/components/home/protocolo"
+import { Estandar } from "@/components/home/estandar"
+import { Planes } from "@/components/home/planes"
+import { Cotizar } from "@/components/home/cotizar"
+import { HomeFooter } from "@/components/home/footer"
 import { Chatbot } from "@/components/blocks/chatbot"
 
 export default function App() {
   return (
-    <div className="min-h-screen font-sans text-slate-900 selection:bg-primary/20 selection:text-primary">
-      <header className="site-header">
-        <Navbar />
-      </header>
-      <main>
+    <div className="min-h-screen bg-ink-950 font-geist text-white antialiased selection:bg-electric/40 selection:text-white">
+      <a
+        href="#contenido"
+        className="sr-only z-[70] rounded-full bg-white px-4 py-2 text-sm text-ink-950 focus:not-sr-only focus:fixed focus:left-4 focus:top-4"
+      >
+        Saltar al contenido
+      </a>
+      <HomeHeader />
+      <main id="contenido">
         <Hero />
-        <SolucionesIA />
         <Servicios />
-        <Proceso />
-        <Precios />
-        <CtaFinal />
+        <Proyectos />
+        <Protocolo />
+        <Estandar />
+        <Planes />
+        <Cotizar />
       </main>
-      <footer>
-        <SiteFooter />
-      </footer>
+      <HomeFooter />
       <Chatbot />
     </div>
   )
