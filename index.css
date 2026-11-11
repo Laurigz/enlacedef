@@ -1,88 +1,64 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
- 
+
 @layer base {
-  :root {
-    --background: 210 20% 98%;
-    --foreground: 222 47% 11%;
-
-    --card: 0 0% 100%;
-    --card-foreground: 222 47% 11%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 222 47% 11%;
-
-    --primary: 225 100% 41%;
-    --primary-foreground: 0 0% 100%;
-
-    --secondary: 210 40% 96%;
-    --secondary-foreground: 222 47% 11%;
-
-    --muted: 210 40% 96%;
-    --muted-foreground: 215 16% 47%;
-
-    --accent: 210 40% 96%;
-    --accent-foreground: 222 47% 11%;
-
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 98%;
-
-    --border: 214 32% 91%;
-    --input: 214 32% 91%;
-    --ring: 225 100% 41%;
-
-    --radius: 0.75rem;
-  }
-
-  .dark {
-    --background: 222 47% 6%;
-    --foreground: 210 20% 98%;
-
-    --card: 222 47% 8%;
-    --card-foreground: 210 20% 98%;
-
-    --popover: 222 47% 8%;
-    --popover-foreground: 210 20% 98%;
-
-    --primary: 225 100% 50%;
-    --primary-foreground: 222 47% 6%;
-
-    --secondary: 217 33% 17%;
-    --secondary-foreground: 210 20% 98%;
-
-    --muted: 217 33% 17%;
-    --muted-foreground: 215 20% 65%;
-
-    --accent: 217 33% 17%;
-    --accent-foreground: 210 20% 98%;
-
-    --destructive: 0 63% 31%;
-    --destructive-foreground: 0 0% 98%;
-
-    --border: 217 33% 17%;
-    --input: 217 33% 17%;
-    --ring: 225 100% 50%;
-  }
-}
- 
-@layer base {
-  * {
-    border-color: hsl(var(--border));
-  }
-  body {
-    background-color: hsl(var(--background));
-    color: hsl(var(--foreground));
-  }
   html {
     scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-cream font-sans text-ink antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  ::selection {
+    @apply bg-sun text-ink;
+  }
+  /* One focus style for the whole site: thick, colorful, impossible to miss. */
+  :focus-visible {
+    outline: 3px solid theme("colors.focus");
+    outline-offset: 3px;
+    border-radius: 9999px;
+  }
+  .focus-card:focus-visible {
+    border-radius: 1.75rem;
   }
 }
 
-.hide-scrollbar::-webkit-scrollbar {
-  display: none;
+@layer components {
+  /* Shared button language: ink outline + offset shadow that "pushes in" on press. */
+  .btn {
+    @apply relative inline-flex select-none items-center justify-center gap-2 whitespace-nowrap rounded-full border-2 border-ink
+      font-display font-semibold tracking-[0.01em] shadow-pop
+      transition-[transform,box-shadow,background-color] duration-200 ease-[cubic-bezier(.34,1.56,.64,1)]
+      hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-pop-lg
+      active:translate-x-1 active:translate-y-1 active:shadow-none active:duration-75;
+  }
+  .btn-md { @apply px-5 py-2.5 text-[15px]; }
+  .btn-lg { @apply px-7 py-3.5 text-[17px]; }
+  .btn-primary { @apply bg-coral text-ink hover:bg-[#FF6B4D]; }
+  .btn-dark { @apply bg-ink text-cream; }
+  .btn-light { @apply bg-white text-ink hover:bg-sun-light; }
+
+  .chip {
+    @apply inline-flex items-center gap-2 rounded-full border-2 border-ink bg-white px-3.5 py-1.5 font-display text-sm font-medium text-ink;
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-2 rounded-full border-2 border-ink bg-white px-3.5 py-1 font-display text-[13px] font-semibold uppercase tracking-[0.12em] text-ink shadow-pop-sm;
+  }
+
+  .dot-grid {
+    background-image: radial-gradient(theme("colors.ink / 10%") 1.2px, transparent 1.2px);
+    background-size: 22px 22px;
+  }
 }
-.hide-scrollbar {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+  }
 }
